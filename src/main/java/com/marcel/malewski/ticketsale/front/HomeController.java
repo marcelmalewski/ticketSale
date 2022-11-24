@@ -8,7 +8,7 @@ import java.text.ParseException;
 
 @Controller
 public class HomeController {
-   @GetMapping("/home")
+   @GetMapping("/front/home")
    public String home(Model model) throws ParseException {
       TicketBuyer ticketBuyer = new TicketBuyer(2, "Jan");
       model.addAttribute("ticketBuyer", ticketBuyer);
