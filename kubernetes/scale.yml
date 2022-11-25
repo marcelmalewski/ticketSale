@@ -1,0 +1,24 @@
+apiVersion: autoscaling/vs/beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: restapi-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: restapi-dep
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: 10
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 10
+    - type: Pods
+      pods:
+        metricName: packets-per-second
+        targetAverageValue: 1k

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: mmalewski
+  labels:
+    app: api-01
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-01
+  template:
+    name: api-pod
+    metadata:
+      namespace: mmalewski
+      labels:
+        app: api-01
+    spec:
+      containers:
+        - name: api-pod-container
+          image: 6745345/api2:1.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: mmalewski
+  name: api-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: api-pod-container
