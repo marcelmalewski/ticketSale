@@ -1,4 +1,4 @@
-package com.marcel.malewski.ticketsale.backend.TicketBuyer;
+package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
