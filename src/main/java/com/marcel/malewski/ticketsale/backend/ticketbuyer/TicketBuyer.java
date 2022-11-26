@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 
+import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,9 +8,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
-@Entity
-@Table
 @Getter
+@Entity
+@Table(name = "ticket_buyer")
 @Setter
 @ToString
 public class TicketBuyer {
@@ -28,24 +29,14 @@ public class TicketBuyer {
    private String secondName;
    private String password;
    private ZonedDateTime dateOfBirth;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinTable(name = "emp_loyalty_card",
+           joinColumns =
+                   { @JoinColumn(name = "ticket_buyer_id", referencedColumnName = "id") },
+           inverseJoinColumns =
+                   { @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id") })
+   private LoyaltyCard loyaltyCard;
 
    public TicketBuyer() {
    }
-
-   public TicketBuyer(String firstName, String secondName, String password, ZonedDateTime dateOfBirth) {
-      this.firstName = firstName;
-      this.secondName = secondName;
-      this.password = password;
-      this.dateOfBirth = dateOfBirth;
-   }
-
-   public TicketBuyer(Long id, String firstName, String secondName, String password, ZonedDateTime dateOfBirth) {
-      this.id = id;
-      this.firstName = firstName;
-      this.secondName = secondName;
-      this.password = password;
-      this.dateOfBirth = dateOfBirth;
-   }
-
-
 }

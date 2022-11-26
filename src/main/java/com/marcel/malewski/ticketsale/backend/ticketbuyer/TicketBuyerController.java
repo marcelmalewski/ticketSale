@@ -40,14 +40,14 @@ public class TicketBuyerController {
    @PutMapping(path = "{id}")
    @Operation(summary = "Update ticket buyer by id")
    public ResponseEntity<TicketBuyer> updateClient(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
-      TicketBuyer updatedTicketBuyer = this.ticketBuyerService.putClient(id, ticketBuyer);
+      TicketBuyer updatedTicketBuyer = this.ticketBuyerService.putTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(updatedTicketBuyer, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
-   @Operation(summary = "Update partially ticket buyer by id")
+   @Operation(summary = "Update ticket buyer partially by id")
    public ResponseEntity<TicketBuyer> patchClient(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
-      TicketBuyer patchedTicketBuyer = this.ticketBuyerService.patchTicketBuyer(id, ticketBuyer);
+      TicketBuyer patchedTicketBuyer = this.ticketBuyerService.patchTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(patchedTicketBuyer, HttpStatus.OK);
    }
 
