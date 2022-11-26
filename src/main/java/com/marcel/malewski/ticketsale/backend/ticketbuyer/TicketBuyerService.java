@@ -28,17 +28,16 @@ public class TicketBuyerService {
       return this.ticketBuyerRepository.save(ticketBuyer);
    }
 
-   public long putClient(long id, TicketBuyer ticketBuyer) {
+   public TicketBuyer putClient(long id, TicketBuyer ticketBuyer) {
       this.ticketBuyerRepository.findById(id)
               .orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
 
       ticketBuyer.setId(id);
 
-      this.ticketBuyerRepository.save(ticketBuyer);
-      return id;
+      return this.ticketBuyerRepository.save(ticketBuyer);
    }
 
-   public void patchTicketBuyer(long id, TicketBuyer ticketBuyer) {
+   public TicketBuyer patchTicketBuyer(long id, TicketBuyer ticketBuyer) {
       TicketBuyer currentTicketBuyer = this.ticketBuyerRepository.findById(id)
               .orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
 
@@ -59,10 +58,13 @@ public class TicketBuyerService {
       );
 
 
-      this.ticketBuyerRepository.save(currentTicketBuyer);
+      return this.ticketBuyerRepository.save(currentTicketBuyer);
    }
 
    public void deleteTicketBuyerById(long id) {
+      if(!this.ticketBuyerRepository.existsById(id))
+         throw new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id));
 
+      this.ticketBuyerRepository.deleteById(id);
    }
 }
