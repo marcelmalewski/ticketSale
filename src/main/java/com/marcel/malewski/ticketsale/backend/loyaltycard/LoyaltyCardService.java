@@ -42,7 +42,6 @@ public class LoyaltyCardService {
       currentLoyaltyCard.setMoneySpent(
               (loyaltyCard.getMoneySpent() != null) ? loyaltyCard.getMoneySpent() : currentLoyaltyCard.getMoneySpent()
       );
-
       currentLoyaltyCard.setNumberOfWatchedMovies(
               (loyaltyCard.getNumberOfWatchedMovies() != null) ? loyaltyCard.getNumberOfWatchedMovies() : currentLoyaltyCard.getNumberOfWatchedMovies()
       );

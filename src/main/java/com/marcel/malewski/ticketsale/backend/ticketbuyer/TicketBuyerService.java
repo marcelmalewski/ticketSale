@@ -32,7 +32,6 @@ public class TicketBuyerService {
               .orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
 
       ticketBuyer.setId(id);
-
       return this.ticketBuyerRepository.save(ticketBuyer);
    }
 
@@ -43,19 +42,21 @@ public class TicketBuyerService {
       currentTicketBuyer.setFirstName(
               (ticketBuyer.getFirstName() != null) ? ticketBuyer.getFirstName() : currentTicketBuyer.getFirstName()
       );
-
       currentTicketBuyer.setSecondName(
               (ticketBuyer.getSecondName() != null) ? ticketBuyer.getSecondName() : currentTicketBuyer.getSecondName()
       );
-
       currentTicketBuyer.setPassword(
               (ticketBuyer.getPassword() != null) ? ticketBuyer.getPassword() : currentTicketBuyer.getPassword()
       );
-
       currentTicketBuyer.setDateOfBirth(
               (ticketBuyer.getDateOfBirth() != null) ? ticketBuyer.getDateOfBirth() : currentTicketBuyer.getDateOfBirth()
       );
-
+      currentTicketBuyer.setLoyaltyCard(
+              (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard() : currentTicketBuyer.getLoyaltyCard()
+      );
+      currentTicketBuyer.setTickets(
+              (ticketBuyer.getTickets() != null) ? ticketBuyer.getTickets() : currentTicketBuyer.getTickets()
+      );
 
       return this.ticketBuyerRepository.save(currentTicketBuyer);
    }
