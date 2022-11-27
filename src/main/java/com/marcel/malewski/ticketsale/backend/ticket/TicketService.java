@@ -29,8 +29,8 @@ public class TicketService {
    }
 
    public Ticket putTicketById(long id, Ticket ticket) {
-      this.ticketRepository.findById(id)
-              .orElseThrow(() -> new TicketNotFoundException(String.format(TICKET_BY_ID_NOT_FOUND_MESSAGE, id)));
+      if (!this.ticketRepository.existsById(id))
+         throw new TicketNotFoundException(String.format(TICKET_BY_ID_NOT_FOUND_MESSAGE, id));
 
       ticket.setId(id);
       return this.ticketRepository.save(ticket);

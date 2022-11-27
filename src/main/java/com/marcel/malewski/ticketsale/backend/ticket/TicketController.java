@@ -53,7 +53,7 @@ public class TicketController {
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete ticket by id")
-   public ResponseEntity<Long> deleteTicket(@PathVariable("id") long id) {
+   public ResponseEntity<Long> deleteTicketById(@PathVariable("id") long id) {
       this.ticketService.deleteTicketById(id);
       return new ResponseEntity<>(id, HttpStatus.OK);
    }

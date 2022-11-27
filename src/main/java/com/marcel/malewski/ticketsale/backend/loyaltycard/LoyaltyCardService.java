@@ -28,8 +28,8 @@ public class LoyaltyCardService {
    }
 
    public LoyaltyCard putLoyaltyCardById(long id, LoyaltyCard loyaltyCard) {
-      this.loyaltyCardRepository.findById(id)
-              .orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
+      if (!this.loyaltyCardRepository.existsById(id))
+         throw new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id));
 
       loyaltyCard.setId(id);
       return this.loyaltyCardRepository.save(loyaltyCard);

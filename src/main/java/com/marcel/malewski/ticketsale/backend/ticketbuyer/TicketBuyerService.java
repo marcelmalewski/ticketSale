@@ -28,8 +28,8 @@ public class TicketBuyerService {
    }
 
    public TicketBuyer putTicketBuyerById(long id, TicketBuyer ticketBuyer) {
-      this.ticketBuyerRepository.findById(id)
-              .orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
+      if(!this.ticketBuyerRepository.existsById(id))
+         throw new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id));
 
       ticketBuyer.setId(id);
       return this.ticketBuyerRepository.save(ticketBuyer);
@@ -53,11 +53,6 @@ public class TicketBuyerService {
       );
       currentTicketBuyer.setLoyaltyCard(
               (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard() : currentTicketBuyer.getLoyaltyCard()
-      );
-      //TODO sprawdzic czy moge tu mam dodawac ticket czy wystarczy ze w tickecie dodam buyera
-      //moge bo ticketBuyer moze miec wiele biletow
-      currentTicketBuyer.setTickets(
-              (ticketBuyer.getTickets() != null) ? ticketBuyer.getTickets() : currentTicketBuyer.getTickets()
       );
 
       return this.ticketBuyerRepository.save(currentTicketBuyer);

@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.ticket;
 
+import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,4 +39,11 @@ public class Ticket {
    @ToString.Exclude
    //sprawdzenie z liczbą osób jest taka sama jak liczba miejsc
    private Set<TicketBuyer> ticketBuyers;
+   @ManyToMany
+   @JoinTable(name = "ticket_seat",
+           joinColumns = { @JoinColumn(name = "ticket_id", referencedColumnName = "id")},
+           inverseJoinColumns = { @JoinColumn(name = "seat_id", referencedColumnName = "id")}
+   )
+   @ToString.Exclude
+   private Set<Seat> seats;
 }

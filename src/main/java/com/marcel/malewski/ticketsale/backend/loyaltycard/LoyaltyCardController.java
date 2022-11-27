@@ -53,7 +53,7 @@ public class LoyaltyCardController {
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete loyalty card by id")
-   public ResponseEntity<Long> deleteLoyaltyCard(@PathVariable("id") long id) {
+   public ResponseEntity<Long> deleteLoyaltyCardById(@PathVariable("id") long id) {
       this.loyaltyCardService.deleteLoyaltyCardById(id);
       return new ResponseEntity<>(id, HttpStatus.OK);
 

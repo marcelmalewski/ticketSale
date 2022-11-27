@@ -53,7 +53,7 @@ public class TicketBuyerController {
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete ticket buyer by id")
-   public ResponseEntity<Long> deleteTickerBuyer(@PathVariable("id") long id) {
+   public ResponseEntity<Long> deleteTickerBuyerById(@PathVariable("id") long id) {
       this.ticketBuyerService.deleteTicketBuyerById(id);
       return new ResponseEntity<>(id, HttpStatus.OK);
    }
