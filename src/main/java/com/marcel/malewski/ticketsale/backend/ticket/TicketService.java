@@ -46,8 +46,8 @@ public class TicketService {
       currentTicket.setShowDate(
               (ticket.getShowDate() != null) ? ticket.getShowDate() : currentTicket.getShowDate()
       );
-      currentTicket.setRoomNumber(
-              (ticket.getRoomNumber() != null) ? ticket.getRoomNumber() : currentTicket.getRoomNumber()
+      currentTicket.setHallNumber(
+              (ticket.getHallNumber() != null) ? ticket.getHallNumber() : currentTicket.getHallNumber()
       );
       currentTicket.setTicketBuyers(
               (ticket.getTicketBuyers() != null) ? ticket.getTicketBuyers() : currentTicket.getTicketBuyers()

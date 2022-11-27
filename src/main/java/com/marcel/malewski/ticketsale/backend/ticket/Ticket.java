@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -29,8 +31,9 @@ public class Ticket {
    private Long id;
    private String movieName;
    private ZonedDateTime showDate;
-   // dodac jakąś stałą i ogranicznie do np 20 bo tylko tyle jest sal
-   private Integer roomNumber;
+   @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
+   @Min(value = 1, message = "Lowest cinema hall number is 1")
+   private Integer hallNumber;
    @ManyToMany
    @JoinTable(name = "ticket_ticket_buyer",
            joinColumns = { @JoinColumn(name = "ticket_id", referencedColumnName = "id")},

@@ -31,7 +31,7 @@ public class TicketBuyer {
    private String secondName;
    private String password;
    private ZonedDateTime dateOfBirth;
-   @OneToOne(cascade = CascadeType.ALL)
+   @OneToOne
    @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id")
    private LoyaltyCard loyaltyCard;
    @ManyToMany(mappedBy = "ticketBuyers")
