@@ -38,7 +38,7 @@ public class TicketController {
    }
 
    @PutMapping(path = "{id}")
-   @Operation(summary = "Update ticket buyer by id")
+   @Operation(summary = "Update ticket by id")
    public ResponseEntity<Ticket> updateTicket(@PathVariable("id") long id, @RequestBody Ticket ticket) {
       Ticket updatedTicket = this.ticketService.putTicketById(id, ticket);
       return new ResponseEntity<>(updatedTicket, HttpStatus.OK);

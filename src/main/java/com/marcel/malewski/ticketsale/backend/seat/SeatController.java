@@ -38,7 +38,7 @@ public class SeatController {
    }
 
    @PutMapping(path = "{id}")
-   @Operation(summary = "Update seat buyer by id")
+   @Operation(summary = "Update seat by id")
    public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @RequestBody Seat seat) {
       Seat updatedSeat = this.seatService.putSeatById(id, seat);
       return new ResponseEntity<>(updatedSeat, HttpStatus.OK);
