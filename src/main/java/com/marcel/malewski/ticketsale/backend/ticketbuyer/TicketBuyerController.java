@@ -18,44 +18,43 @@ public class TicketBuyerController {
 
    @GetMapping
    @Operation(summary = "Get all ticket buyers")
-   public ResponseEntity<List<TicketBuyer>> getAllClients() {
+   public ResponseEntity<List<TicketBuyer>> getAllTicketBuyers() {
       List<TicketBuyer> ticketBuyers = this.ticketBuyerService.getAllTicketBuyers();
       return new ResponseEntity<>(ticketBuyers, HttpStatus.OK);
    }
 
    @GetMapping(path = "{id}")
    @Operation(summary = "Get ticket buyer by id")
-   public ResponseEntity<TicketBuyer> getClientById(@PathVariable("id") long id) {
+   public ResponseEntity<TicketBuyer> getTicketBuyerById(@PathVariable("id") long id) {
       TicketBuyer ticketBuyer = this.ticketBuyerService.getTicketBuyerById(id);
       return new ResponseEntity<>(ticketBuyer, HttpStatus.OK);
    }
 
    @PostMapping
    @Operation(summary = "Create new ticket buyer")
-   public ResponseEntity<TicketBuyer> postClient(@RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> postTicketBuyer(@RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer createdTicketBuyer = this.ticketBuyerService.postTicketBuyer(ticketBuyer);
       return new ResponseEntity<>(createdTicketBuyer, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update ticket buyer by id")
-   public ResponseEntity<TicketBuyer> updateClient(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> updateTicketBuyer(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer updatedTicketBuyer = this.ticketBuyerService.putTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(updatedTicketBuyer, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update ticket buyer partially by id")
-   public ResponseEntity<TicketBuyer> patchClient(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> patchTicketBuyer(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer patchedTicketBuyer = this.ticketBuyerService.patchTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(patchedTicketBuyer, HttpStatus.OK);
    }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete ticket buyer by id")
-   public ResponseEntity<Long> deleteClient(@PathVariable("id") long id) {
+   public ResponseEntity<Long> deleteTickerBuyer(@PathVariable("id") long id) {
       this.ticketBuyerService.deleteTicketBuyerById(id);
       return new ResponseEntity<>(id, HttpStatus.OK);
-
    }
 }

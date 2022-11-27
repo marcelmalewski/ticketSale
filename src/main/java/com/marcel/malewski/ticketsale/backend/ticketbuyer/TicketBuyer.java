@@ -32,11 +32,7 @@ public class TicketBuyer {
    private String password;
    private ZonedDateTime dateOfBirth;
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinTable(name = "ticket_buyer_loyalty_card",
-           joinColumns =
-                   { @JoinColumn(name = "ticket_buyer_id", referencedColumnName = "id") },
-           inverseJoinColumns =
-                   { @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id") })
+   @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id")
    private LoyaltyCard loyaltyCard;
    @ManyToMany(mappedBy = "ticketBuyers")
    @ToString.Exclude

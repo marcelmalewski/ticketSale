@@ -54,6 +54,8 @@ public class TicketBuyerService {
       currentTicketBuyer.setLoyaltyCard(
               (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard() : currentTicketBuyer.getLoyaltyCard()
       );
+      //TODO sprawdzic czy moge tu mam dodawac ticket czy wystarczy ze w tickecie dodam buyera
+      //moge bo ticketBuyer moze miec wiele biletow
       currentTicketBuyer.setTickets(
               (ticketBuyer.getTickets() != null) ? ticketBuyer.getTickets() : currentTicketBuyer.getTickets()
       );

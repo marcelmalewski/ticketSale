@@ -18,42 +18,42 @@ public class LoyaltyCardController {
 
    @GetMapping
    @Operation(summary = "Get all loyalty cards")
-   public ResponseEntity<List<LoyaltyCard>> getAllClients() {
-      List<LoyaltyCard> ticketBuyers = this.loyaltyCardService.getAllLoyaltyCards();
-      return new ResponseEntity<>(ticketBuyers, HttpStatus.OK);
+   public ResponseEntity<List<LoyaltyCard>> getAllLoyaltyCards() {
+      List<LoyaltyCard> loyaltyCards = this.loyaltyCardService.getAllLoyaltyCards();
+      return new ResponseEntity<>(loyaltyCards, HttpStatus.OK);
    }
 
    @GetMapping(path = "{id}")
    @Operation(summary = "Get loyalty card by id")
-   public ResponseEntity<LoyaltyCard> getClientById(@PathVariable("id") long id) {
-      LoyaltyCard ticketBuyer = this.loyaltyCardService.getLoyaltyCardById(id);
-      return new ResponseEntity<>(ticketBuyer, HttpStatus.OK);
+   public ResponseEntity<LoyaltyCard> getLoyaltyCardById(@PathVariable("id") long id) {
+      LoyaltyCard loyaltyCard = this.loyaltyCardService.getLoyaltyCardById(id);
+      return new ResponseEntity<>(loyaltyCard, HttpStatus.OK);
    }
 
    @PostMapping
    @Operation(summary = "Create new loyalty card")
-   public ResponseEntity<LoyaltyCard> postClient(@RequestBody LoyaltyCard ticketBuyer) {
-      LoyaltyCard createdTicketBuyer = this.loyaltyCardService.postLoyaltyCard(ticketBuyer);
-      return new ResponseEntity<>(createdTicketBuyer, HttpStatus.CREATED);
+   public ResponseEntity<LoyaltyCard> postLoyaltyCard(@RequestBody LoyaltyCard loyaltyCard) {
+      LoyaltyCard createdLoyaltyCard = this.loyaltyCardService.postLoyaltyCard(loyaltyCard);
+      return new ResponseEntity<>(createdLoyaltyCard, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update loyalty card by id")
-   public ResponseEntity<LoyaltyCard> updateClient(@PathVariable("id") long id, @RequestBody LoyaltyCard ticketBuyer) {
-      LoyaltyCard updatedTicketBuyer = this.loyaltyCardService.putLoyaltyCardById(id, ticketBuyer);
-      return new ResponseEntity<>(updatedTicketBuyer, HttpStatus.OK);
+   public ResponseEntity<LoyaltyCard> updateLoyaltyCard(@PathVariable("id") long id, @RequestBody LoyaltyCard loyaltyCard) {
+      LoyaltyCard updatedLoyaltyCard = this.loyaltyCardService.putLoyaltyCardById(id, loyaltyCard);
+      return new ResponseEntity<>(updatedLoyaltyCard, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update loyalty card partially by id")
-   public ResponseEntity<LoyaltyCard> patchClient(@PathVariable("id") long id, @RequestBody LoyaltyCard ticketBuyer) {
-      LoyaltyCard patchedTicketBuyer = this.loyaltyCardService.patchLoyaltyCardById(id, ticketBuyer);
-      return new ResponseEntity<>(patchedTicketBuyer, HttpStatus.OK);
+   public ResponseEntity<LoyaltyCard> patchLoyaltyCard(@PathVariable("id") long id, @RequestBody LoyaltyCard loyaltyCarduyer) {
+      LoyaltyCard patchedLoyaltyCard = this.loyaltyCardService.patchLoyaltyCardById(id, loyaltyCarduyer);
+      return new ResponseEntity<>(patchedLoyaltyCard, HttpStatus.OK);
    }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete loyalty card by id")
-   public ResponseEntity<Long> deleteClient(@PathVariable("id") long id) {
+   public ResponseEntity<Long> deleteLoyaltyCard(@PathVariable("id") long id) {
       this.loyaltyCardService.deleteLoyaltyCardById(id);
       return new ResponseEntity<>(id, HttpStatus.OK);
 
