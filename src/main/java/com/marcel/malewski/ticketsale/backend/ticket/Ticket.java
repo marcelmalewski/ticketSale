@@ -7,8 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -30,9 +31,10 @@ public class Ticket {
    )
    private Long id;
    private String movieName;
+   @Future(message = "Date must be in the future")
    private ZonedDateTime showDate;
    @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
-   @Min(value = 1, message = "Lowest cinema hall number is 1")
+   @Positive(message = "Cinema hall number must be positive")
    private Integer hallNumber;
    @ManyToMany
    @JoinTable(name = "ticket_ticket_buyer",

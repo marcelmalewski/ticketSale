@@ -51,6 +51,12 @@ public class TicketBuyerService {
       currentTicketBuyer.setDateOfBirth(
               (ticketBuyer.getDateOfBirth() != null) ? ticketBuyer.getDateOfBirth() : currentTicketBuyer.getDateOfBirth()
       );
+      currentTicketBuyer.setEmail(
+              (ticketBuyer.getEmail() != null) ? ticketBuyer.getEmail() : currentTicketBuyer.getEmail()
+      );
+      currentTicketBuyer.setAgeRange(
+              (ticketBuyer.getAgeRange() != null) ? ticketBuyer.getAgeRange() : currentTicketBuyer.getAgeRange()
+      );
       currentTicketBuyer.setLoyaltyCard(
               (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard() : currentTicketBuyer.getLoyaltyCard()
       );

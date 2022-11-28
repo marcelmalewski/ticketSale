@@ -6,8 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 @Getter
@@ -27,13 +26,12 @@ public class CinemaHall {
            generator = "cinema_hall_sequence"
    )
    private Long id;
-   //TODO moze faktycznie dac tu potem mape data film
-   //TODO w adnotacjach mozna dac ograniczenia wilosci
-   //private ZonedDateTime[] showDates;
    @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
-   @Min(value = 1, message = "Lowest cinema hall number is 1")
+   @Positive(message = "Cinema hall number must be positive")
    private Integer hallNumber;
    @OneToMany(mappedBy = "cinemaHall")
+   @Size(max = 50, message = "Cinema hall cannot have more than 50 seats")
    @ToString.Exclude
+   //czy jak powstaje miejsce i dodaje do siebie id cinema hall i bedzie to 51 to nie bedzie bledu?
    private Set<Seat> seats;
 }

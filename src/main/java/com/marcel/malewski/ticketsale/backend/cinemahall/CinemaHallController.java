@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,21 @@ public class CinemaHallController {
 
    @PostMapping
    @Operation(summary = "Create new cinema hall")
-   public ResponseEntity<CinemaHall> postCinemaHall(@RequestBody CinemaHall cinemaHall) {
+   public ResponseEntity<CinemaHall> postCinemaHall(@Valid @RequestBody CinemaHall cinemaHall) {
       CinemaHall createdCinemaHall = this.cinemaHallService.postCinemaHall(cinemaHall);
       return new ResponseEntity<>(createdCinemaHall, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update cinema hall by id")
-   public ResponseEntity<CinemaHall> updateCinemaHallById(@PathVariable("id") long id, @RequestBody CinemaHall cinemaHall) {
+   public ResponseEntity<CinemaHall> updateCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHall cinemaHall) {
       CinemaHall updatedCinemaHall = this.cinemaHallService.putCinemaHallById(id, cinemaHall);
       return new ResponseEntity<>(updatedCinemaHall, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update cinema hall partially by id")
-   public ResponseEntity<CinemaHall> patchCinemaHallById(@PathVariable("id") long id, @RequestBody CinemaHall cinemaHall) {
+   public ResponseEntity<CinemaHall> patchCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHall cinemaHall) {
       CinemaHall patchedCinemaHall = this.cinemaHallService.patchCinemaHallById(id, cinemaHall);
       return new ResponseEntity<>(patchedCinemaHall, HttpStatus.OK);
    }

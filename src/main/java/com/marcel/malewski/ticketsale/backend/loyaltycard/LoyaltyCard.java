@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
 @Entity
@@ -25,8 +27,13 @@ public class LoyaltyCard {
            generator = "loyalty_card_sequence"
    )
    private Long id;
+   @Min(value = 0, message = "Money spent must be greater than or equal to 0")
    private BigDecimal moneySpent;
+   @Min(value = 0, message = "Number of watched movies must be greater than or equal to 0")
    private Long numberOfWatchedMovies;
+   @Max(value = 100, message = "Discount must be less than 100")
+   @Min(value = 0, message = "Discount must be greater than or equal to 0")
+   private Integer discountOnTheNextTicket;
    @OneToOne(mappedBy = "loyaltyCard")
    private TicketBuyer ticketBuyer;
 }

@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Positive;
 import java.util.Set;
 
 @Getter
@@ -27,6 +29,8 @@ public class Seat {
    )
    private Long id;
    //w zakresie jeden sali nie moze sie powtarzac seatNumber
+   @Max(value = 50, message = "Seat number must be less than 50")
+   @Positive(message = "Seat number must be positive")
    private Integer seatNumber;
    private Boolean isPremium;
    @ManyToMany(mappedBy = "seats")

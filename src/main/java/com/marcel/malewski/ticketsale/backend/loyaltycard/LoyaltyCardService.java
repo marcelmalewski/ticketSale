@@ -45,6 +45,9 @@ public class LoyaltyCardService {
       currentLoyaltyCard.setNumberOfWatchedMovies(
               (loyaltyCard.getNumberOfWatchedMovies() != null) ? loyaltyCard.getNumberOfWatchedMovies() : currentLoyaltyCard.getNumberOfWatchedMovies()
       );
+      currentLoyaltyCard.setDiscountOnTheNextTicket(
+              (loyaltyCard.getDiscountOnTheNextTicket() != null) ? loyaltyCard.getDiscountOnTheNextTicket() : currentLoyaltyCard.getDiscountOnTheNextTicket()
+      );
 
       return this.loyaltyCardRepository.save(currentLoyaltyCard);
    }

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,21 @@ public class LoyaltyCardController {
 
    @PostMapping
    @Operation(summary = "Create new loyalty card")
-   public ResponseEntity<LoyaltyCard> postLoyaltyCard(@RequestBody LoyaltyCard loyaltyCard) {
+   public ResponseEntity<LoyaltyCard> postLoyaltyCard(@Valid @RequestBody LoyaltyCard loyaltyCard) {
       LoyaltyCard createdLoyaltyCard = this.loyaltyCardService.postLoyaltyCard(loyaltyCard);
       return new ResponseEntity<>(createdLoyaltyCard, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update loyalty card by id")
-   public ResponseEntity<LoyaltyCard> updateLoyaltyCard(@PathVariable("id") long id, @RequestBody LoyaltyCard loyaltyCard) {
+   public ResponseEntity<LoyaltyCard> updateLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCard loyaltyCard) {
       LoyaltyCard updatedLoyaltyCard = this.loyaltyCardService.putLoyaltyCardById(id, loyaltyCard);
       return new ResponseEntity<>(updatedLoyaltyCard, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update loyalty card partially by id")
-   public ResponseEntity<LoyaltyCard> patchLoyaltyCard(@PathVariable("id") long id, @RequestBody LoyaltyCard loyaltyCarduyer) {
+   public ResponseEntity<LoyaltyCard> patchLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCard loyaltyCarduyer) {
       LoyaltyCard patchedLoyaltyCard = this.loyaltyCardService.patchLoyaltyCardById(id, loyaltyCarduyer);
       return new ResponseEntity<>(patchedLoyaltyCard, HttpStatus.OK);
    }

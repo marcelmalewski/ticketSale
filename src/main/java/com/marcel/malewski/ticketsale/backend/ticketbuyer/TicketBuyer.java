@@ -2,11 +2,14 @@ package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Past;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -30,7 +33,11 @@ public class TicketBuyer {
    private String firstName;
    private String secondName;
    private String password;
+   @Past(message = "Date must be in the past")
    private ZonedDateTime dateOfBirth;
+   @Email(message = "Email should be valid")
+   private String email;
+   private AgeRange ageRange;
    @OneToOne
    @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id")
    private LoyaltyCard loyaltyCard;

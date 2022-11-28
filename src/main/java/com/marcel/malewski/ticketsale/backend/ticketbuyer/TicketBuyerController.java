@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,21 @@ public class TicketBuyerController {
 
    @PostMapping
    @Operation(summary = "Create new ticket buyer")
-   public ResponseEntity<TicketBuyer> postTicketBuyer(@RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> postTicketBuyer(@Valid @RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer createdTicketBuyer = this.ticketBuyerService.postTicketBuyer(ticketBuyer);
       return new ResponseEntity<>(createdTicketBuyer, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update ticket buyer by id")
-   public ResponseEntity<TicketBuyer> updateTicketBuyer(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> updateTicketBuyer(@PathVariable("id") long id, @Valid @RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer updatedTicketBuyer = this.ticketBuyerService.putTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(updatedTicketBuyer, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update ticket buyer partially by id")
-   public ResponseEntity<TicketBuyer> patchTicketBuyer(@PathVariable("id") long id, @RequestBody TicketBuyer ticketBuyer) {
+   public ResponseEntity<TicketBuyer> patchTicketBuyer(@PathVariable("id") long id, @Valid @RequestBody TicketBuyer ticketBuyer) {
       TicketBuyer patchedTicketBuyer = this.ticketBuyerService.patchTicketBuyerById(id, ticketBuyer);
       return new ResponseEntity<>(patchedTicketBuyer, HttpStatus.OK);
    }

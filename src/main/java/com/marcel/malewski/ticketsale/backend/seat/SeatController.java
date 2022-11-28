@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,21 @@ public class SeatController {
 
    @PostMapping
    @Operation(summary = "Create new seat")
-   public ResponseEntity<Seat> postSeat(@RequestBody Seat seat) {
+   public ResponseEntity<Seat> postSeat(@Valid @RequestBody Seat seat) {
       Seat createdSeat = this.seatService.postSeat(seat);
       return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update seat by id")
-   public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @RequestBody Seat seat) {
+   public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @Valid @RequestBody Seat seat) {
       Seat updatedSeat = this.seatService.putSeatById(id, seat);
       return new ResponseEntity<>(updatedSeat, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update seat partially by id")
-   public ResponseEntity<Seat> patchTicketBuyer(@PathVariable("id") long id, @RequestBody Seat seat) {
+   public ResponseEntity<Seat> patchTicketBuyer(@PathVariable("id") long id, @Valid @RequestBody Seat seat) {
       Seat patchedSeat = this.seatService.patchSeatById(id, seat);
       return new ResponseEntity<>(patchedSeat, HttpStatus.OK);
    }

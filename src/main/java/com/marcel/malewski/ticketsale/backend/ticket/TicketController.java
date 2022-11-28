@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,21 +33,21 @@ public class TicketController {
 
    @PostMapping
    @Operation(summary = "Create new ticket")
-   public ResponseEntity<Ticket> postTicket(@RequestBody Ticket ticket) {
+   public ResponseEntity<Ticket> postTicket(@Valid @RequestBody Ticket ticket) {
       Ticket createdTicket = this.ticketService.postTicket(ticket);
       return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update ticket by id")
-   public ResponseEntity<Ticket> updateTicket(@PathVariable("id") long id, @RequestBody Ticket ticket) {
+   public ResponseEntity<Ticket> updateTicket(@PathVariable("id") long id, @Valid @RequestBody Ticket ticket) {
       Ticket updatedTicket = this.ticketService.putTicketById(id, ticket);
       return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
    }
 
    @PatchMapping(path = "{id}")
    @Operation(summary = "Update ticket partially by id")
-   public ResponseEntity<Ticket> patchTicket(@PathVariable("id") long id, @RequestBody Ticket ticket) {
+   public ResponseEntity<Ticket> patchTicket(@PathVariable("id") long id, @Valid @RequestBody Ticket ticket) {
       Ticket patchedTicket = this.ticketService.patchTicketById(id, ticket);
       return new ResponseEntity<>(patchedTicket, HttpStatus.OK);
    }
