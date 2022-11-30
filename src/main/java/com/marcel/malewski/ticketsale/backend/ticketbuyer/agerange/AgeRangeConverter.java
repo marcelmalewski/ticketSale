@@ -11,7 +11,7 @@ public class AgeRangeConverter implements AttributeConverter<AgeRange, String> {
       if (ageRange == null) {
          return null;
       }
-      return ageRange.getCode();
+      return ageRange.getValue();
    }
 
    @Override
@@ -21,7 +21,7 @@ public class AgeRangeConverter implements AttributeConverter<AgeRange, String> {
       }
 
       return Stream.of(AgeRange.values())
-              .filter(c -> c.getCode().equals(code))
+              .filter(c -> c.getValue().equals(code))
               .findFirst()
               .orElseThrow(IllegalArgumentException::new);
    }

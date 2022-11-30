@@ -28,7 +28,6 @@ public class Seat {
            generator = "seat_sequence"
    )
    private Long id;
-   //w zakresie jeden sali nie moze sie powtarzac seatNumber
    @Max(value = 50, message = "Seat number must be less than 50")
    @Positive(message = "Seat number must be positive")
    private Integer seatNumber;
@@ -38,5 +37,6 @@ public class Seat {
    private Set<Ticket> tickets;
    @ManyToOne
    @JoinColumn(name = "cinema_hall_id", nullable = false)
+   //w zakresie jeden sali nie moze sie powtarzac seatNumber
    private CinemaHall cinemaHall;
 }

@@ -2,12 +2,12 @@ package com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange;
 
 public enum AgeRange {
    CHILD("CHILD"), ADULT("ADULT"), SENIOR("SENIOR");
-   private final String code;
-   private AgeRange(String code) {
-      this.code = code;
+   private final String value;
+   private AgeRange(String value) {
+      this.value = value;
    }
 
-   public String getCode() {
-      return code;
+   public String getValue() {
+      return this.value;
    }
 }
