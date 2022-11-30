@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @RequestMapping(path = "/front/v1/ticket-buyers")
 public class TicketBuyerDomainController {
    @GetMapping("/home")
-   public String getTicketBuyerPage(Model model) {
+   public String getTicketBuyerHome(Model model) {
       TicketBuyerDomain ticketBuyerDomain = new TicketBuyerDomain();
       model.addAttribute("ticketBuyerDomain", ticketBuyerDomain);
       return "ticketBuyerHome";
