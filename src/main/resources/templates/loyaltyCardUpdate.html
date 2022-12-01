@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="PUT" th:action="@{/front/v1/loyalty-cards/add/validate}" th:object="${loyaltyCard}">
+    <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+       <h2>Form errors.</h2>
+      </span>
+    </div>
+    <br>
+
+    <label for="moneySpent">money spent:</label>
+    <input type="number" th:field="*{moneySpent}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('moneySpent')}"
+          th:errors="*{moneySpent}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="numberOfWatchedMovies">number of watched movies:</label>
+    <input type="number" th:field="*{numberOfWatchedMovies}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('numberOfWatchedMovies')}"
+          th:errors="*{numberOfWatchedMovies}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="discountOnTheNextTicket">discount on the next ticket:</label>
+    <input type="number" th:field="*{discountOnTheNextTicket}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('discountOnTheNextTicket')}"
+          th:errors="*{discountOnTheNextTicket}">Error
+    </span>
+    <br>
+    <br>
+
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

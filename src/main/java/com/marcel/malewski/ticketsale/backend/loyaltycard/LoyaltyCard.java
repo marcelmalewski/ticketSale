@@ -1,6 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
+import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,4 +31,12 @@ public class LoyaltyCard {
    private Integer discountOnTheNextTicket;
    @OneToOne(mappedBy = "loyaltyCard")
    private TicketBuyer ticketBuyer;
+
+   public LoyaltyCardWithValidationDto toLoyaltyCardWithValidationDto() {
+      LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = new LoyaltyCardWithValidationDto();
+      loyaltyCardWithValidationDto.setMoneySpent(moneySpent);
+      loyaltyCardWithValidationDto.setNumberOfWatchedMovies(numberOfWatchedMovies);
+      loyaltyCardWithValidationDto.setDiscountOnTheNextTicket(discountOnTheNextTicket);
+      return loyaltyCardWithValidationDto;
+   }
 }

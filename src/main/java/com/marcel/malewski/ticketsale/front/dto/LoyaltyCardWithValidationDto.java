@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
-public class LoyaltyCardPostDto {
+public class LoyaltyCardWithValidationDto {
    @Min(value = 0, message = "Money spent must be greater than or equal to 0")
    @NotNull
    private BigDecimal moneySpent;
