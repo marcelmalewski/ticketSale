@@ -14,61 +14,64 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/front/v1/loyalty-cards")
-public class LoyalCardDomainController {
+public class LoyaltyCardDomainController {
    private final LoyaltyCardService loyaltyCardService;
 
-   public LoyalCardDomainController(LoyaltyCardService loyaltyCardService) {
+   public LoyaltyCardDomainController(LoyaltyCardService loyaltyCardService) {
       this.loyaltyCardService = loyaltyCardService;
    }
 
-   @GetMapping("/home")
+   @RequestMapping("/home")
    public String getLoyaltyCardHome(Model model) {
       List<LoyaltyCard> loyaltyCards = this.loyaltyCardService.getAllLoyaltyCards();
       model.addAttribute("loyaltyCards", loyaltyCards);
-      return "loyaltyCardHome";
+      return "loyaltyCard/loyaltyCardHome";
    }
 
-   @GetMapping("/add")
+   @RequestMapping("/add")
    public String getLoyaltyCardAdd(Model model) {
       LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = new LoyaltyCardWithValidationDto();
-      model.addAttribute("loyaltyCard", loyaltyCardWithValidationDto);
-      return "loyaltyCardAdd";
+      model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
+      return "loyaltyCard/loyaltyCardAdd";
    }
 
    @PostMapping("/add/validate")
-//   @ResponseStatus(HttpStatus.CREATED)
-   public String processLoyaltyCardPost(@Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto, Errors errors, Model model) {
-      model.addAttribute("loyaltyCard", loyaltyCardWithValidationDto);
+   public String processLoyaltyCardPost(
+           @Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto,
+           Errors errors, Model model) {
+      model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
       if (errors.hasErrors()) {
-         return "loyaltyCardAdd";
+         return "loyaltyCard/loyaltyCardAdd";
       }
       LoyaltyCard loyaltyCard = loyaltyCardWithValidationDto.toLoyaltyCard();
-      System.out.println(loyaltyCard);
-      //this.loyaltyCardService.postLoyaltyCard();
+      this.loyaltyCardService.postLoyaltyCard(loyaltyCard);
 
       return "redirect:/front/v1/loyalty-cards/home";
    }
 
-   @GetMapping("/update/{id}")
+   @RequestMapping("/update/{id}")
    public String getLoyaltyCardPut(@PathVariable(name = "id") long id, Model model) {
       LoyaltyCard loyaltyCardToUpdate = this.loyaltyCardService.getLoyaltyCardById(id);
       LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = loyaltyCardToUpdate.toLoyaltyCardWithValidationDto();
-      model.addAttribute("loyaltyCard", loyaltyCardWithValidationDto);
-      return "loyaltyCardUpdate";
+      model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
+      return "loyaltyCard/loyaltyCardUpdate";
    }
 
-   @PutMapping("/update/validate")
-   public String processLoyaltyCardPut(@Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto, Errors errors, Model model) {
-      model.addAttribute("loyaltyCard", loyaltyCardWithValidationDto);
+   @PostMapping("/update/validate")
+   public String processLoyaltyCardPut(
+           @Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto,
+           Errors errors, Model model) {
+      model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
       if (errors.hasErrors()) {
-         return "loyaltyCardUpdate";
+         return "loyaltyCard/loyaltyCardUpdate";
       }
-      this.loyaltyCardService.postLoyaltyCard(loyaltyCardWithValidationDto.toLoyaltyCard());
+      LoyaltyCard loyaltyCard = loyaltyCardWithValidationDto.toLoyaltyCard();
+      this.loyaltyCardService.putLoyaltyCardById(loyaltyCard.getId(), loyaltyCard);
 
       return "redirect:/front/v1/loyalty-cards/home";
    }
 
-   @DeleteMapping("/delete/{id}")
+   @GetMapping("/delete/{id}")
    public String processLoyaltyCardDelete(@PathVariable(name = "id") long id) {
       this.loyaltyCardService.deleteLoyaltyCardById(id);
       return "redirect:/front/v1/loyalty-cards/home";

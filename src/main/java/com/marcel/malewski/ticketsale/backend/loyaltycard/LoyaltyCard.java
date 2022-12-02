@@ -34,9 +34,10 @@ public class LoyaltyCard {
 
    public LoyaltyCardWithValidationDto toLoyaltyCardWithValidationDto() {
       LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = new LoyaltyCardWithValidationDto();
-      loyaltyCardWithValidationDto.setMoneySpent(moneySpent);
-      loyaltyCardWithValidationDto.setNumberOfWatchedMovies(numberOfWatchedMovies);
-      loyaltyCardWithValidationDto.setDiscountOnTheNextTicket(discountOnTheNextTicket);
+      loyaltyCardWithValidationDto.setId(this.id);
+      loyaltyCardWithValidationDto.setMoneySpent(this.moneySpent);
+      loyaltyCardWithValidationDto.setNumberOfWatchedMovies(this.numberOfWatchedMovies);
+      loyaltyCardWithValidationDto.setDiscountOnTheNextTicket(this.discountOnTheNextTicket);
       return loyaltyCardWithValidationDto;
    }
 }

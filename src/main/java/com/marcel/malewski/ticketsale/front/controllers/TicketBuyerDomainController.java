@@ -1,39 +1,49 @@
 package com.marcel.malewski.ticketsale.front.controllers;
 
-import com.marcel.malewski.ticketsale.front.domain.TicketBuyerDomain;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyerService;
+import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/front/v1/ticket-buyers")
 public class TicketBuyerDomainController {
-   @GetMapping("/home")
+   private final TicketBuyerService ticketBuyerService;
+
+   public TicketBuyerDomainController(TicketBuyerService ticketBuyerService) {
+      this.ticketBuyerService = ticketBuyerService;
+   }
+
+   @RequestMapping("/home")
    public String getTicketBuyerHome(Model model) {
-      TicketBuyerDomain ticketBuyerDomain = new TicketBuyerDomain();
-      model.addAttribute("ticketBuyerDomain", ticketBuyerDomain);
-      return "ticketBuyerHome";
+      List<TicketBuyer> ticketBuyers = this.ticketBuyerService.getAllTicketBuyers();
+      model.addAttribute("ticketBuyers", ticketBuyers);
+      return "ticketBuyer/ticketBuyerHome";
    }
 
-   @GetMapping("/form")
-   public String getTicketBuyerForm(Model model) {
-      TicketBuyerDomain ticketBuyerDomain = new TicketBuyerDomain();
-      model.addAttribute("ticketBuyerDomain", ticketBuyerDomain);
-      return "ticketBuyerForm";
+   @RequestMapping("/add")
+   public String getTicketBuyerAdd(Model model) {
+      TicketBuyerWithValidationDto ticketBuyerWithValidationDto = new TicketBuyerWithValidationDto();
+      model.addAttribute("ticketBuyerWithValidationDto", ticketBuyerWithValidationDto);
+      return "ticketBuyer/ticketBuyerAdd";
    }
 
-   @PostMapping("/create")
-   public String processTicketBuyerPost(@Valid TicketBuyerDomain ticketBuyerDomain, Errors errors, Model model){
-      model.addAttribute("ticketBuyerDomain", ticketBuyerDomain);
+   @PostMapping("/add/validate")
+   public String processTicketBuyerPost(
+           @Valid TicketBuyerWithValidationDto ticketBuyerWithValidationDto,
+           Errors errors, Model model){
+      model.addAttribute("ticketBuyerWithValidationDto", ticketBuyerWithValidationDto);
       if(errors.hasErrors()){
-         return "ticketBuyerForm";
+         return "ticketBuyer/ticketBuyerAdd";
       }
-      System.out.println(ticketBuyerDomain);
+      System.out.println(ticketBuyerWithValidationDto);
       return "redirect:/";
    }
 }

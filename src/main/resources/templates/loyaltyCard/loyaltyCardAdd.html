@@ -5,7 +5,7 @@
     <title>Loyalty card form</title>
 </head>
 <body>
-<form method="POST" th:action="@{/front/v1/loyalty-cards/add/validate}" th:object="${loyaltyCard}">
+<form method="POST" th:action="@{/front/v1/loyalty-cards/add/validate}" th:object="${loyaltyCardWithValidationDto}">
     <div th:if="${#fields.hasErrors()}">
       <span class="validationError">
        <h2>Form errors.</h2>

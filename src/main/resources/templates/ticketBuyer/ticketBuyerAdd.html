@@ -5,7 +5,7 @@
     <title>Ticket buyer page</title>
 </head>
 <body>
-<form method="POST" th:action="@{/front/v1/ticket-buyers/create}" th:object="${ticketBuyerDomain}">
+<form method="POST" th:action="@{/front/v1/ticket-buyers/add/validate}" th:object="${ticketBuyerWithValidationDto}">
     <div th:if="${#fields.hasErrors()}">
       <span class="validationError">
        <h2>Form errors.</h2>
@@ -43,15 +43,15 @@
     <br>
     <br>
 
-    <label for="dateOfBirth">date of birth:</label>
-    <input type="date" th:field="*{dateOfBirth}"/>
-    <br>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('dateOfBirth')}"
-          th:errors="*{dateOfBirth}">Error
-    </span>
-    <br>
-    <br>
+<!--    <label for="dateOfBirth">date of birth:</label>-->
+<!--    <input type="date" th:field="*{dateOfBirth}"/>-->
+<!--    <br>-->
+<!--    <span class="validationError"-->
+<!--          th:if="${#fields.hasErrors('dateOfBirth')}"-->
+<!--          th:errors="*{dateOfBirth}">Error-->
+<!--    </span>-->
+<!--    <br>-->
+<!--    <br>-->
 
     <label for="email">email:</label>
     <input type="text" th:field="*{email}"/>

@@ -1,7 +1,5 @@
 package com.marcel.malewski.ticketsale.front.constraint;
 
-import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;

@@ -33,9 +33,7 @@ public class TicketBuyer {
    private String firstName;
    private String secondName;
    private String password;
-   @Past(message = "Date must be in the past")
    private ZonedDateTime dateOfBirth;
-   @Email(message = "Email should be valid")
    private String email;
    private AgeRange ageRange;
    @OneToOne

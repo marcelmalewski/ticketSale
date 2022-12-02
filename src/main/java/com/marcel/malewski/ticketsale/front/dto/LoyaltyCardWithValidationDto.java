@@ -11,22 +11,27 @@ import java.math.BigDecimal;
 
 @Data
 public class LoyaltyCardWithValidationDto {
+   private Long id;
    @Min(value = 0, message = "Money spent must be greater than or equal to 0")
-   @NotNull
+   @NotNull(message = "Money spent is mandatory")
    private BigDecimal moneySpent;
    @Min(value = 0, message = "Number of watched movies must be greater than or equal to 0")
-   @NotNull
+   @NotNull(message = "Number of watched movies is mandatory")
    private Long numberOfWatchedMovies;
    @Max(value = 100, message = "Discount must be less than 100")
    @Min(value = 0, message = "Discount must be greater than or equal to 0")
-   @NotNull
+   @NotNull(message = "Discount is mandatory")
    private Integer discountOnTheNextTicket;
+
+   public LoyaltyCardWithValidationDto() {
+   }
 
    public LoyaltyCard toLoyaltyCard() {
          LoyaltyCard loyaltyCard = new LoyaltyCard();
-         loyaltyCard.setMoneySpent(moneySpent);
-         loyaltyCard.setNumberOfWatchedMovies(numberOfWatchedMovies);
-         loyaltyCard.setDiscountOnTheNextTicket(discountOnTheNextTicket);
+         loyaltyCard.setId(this.id);
+         loyaltyCard.setMoneySpent(this.moneySpent);
+         loyaltyCard.setNumberOfWatchedMovies(this.numberOfWatchedMovies);
+         loyaltyCard.setDiscountOnTheNextTicket(this.discountOnTheNextTicket);
          return loyaltyCard;
    }
 }

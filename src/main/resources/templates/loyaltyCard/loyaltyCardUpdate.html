@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Loyalty cards pot :)</title>
 </head>
 <body>
-<form method="PUT" th:action="@{/front/v1/loyalty-cards/add/validate}" th:object="${loyaltyCard}">
+<form method="POST" th:action="@{/front/v1/loyalty-cards/update/validate}" th:object="${loyaltyCardWithValidationDto}">
     <div th:if="${#fields.hasErrors()}">
       <span class="validationError">
        <h2>Form errors.</h2>
       </span>
     </div>
+    <br>
+
+    <label for="id">Id:</label>
+    <input type="text" id="id" name="id" th:field="*{id}" readonly="readonly"/>
+    <br>
     <br>
 
     <label for="moneySpent">money spent:</label>
