@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seat home</title>
+</head>
+<body>
+<a href="/front/v1/seats/add"
+   style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 15px;"
+>Add new seat</a>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+  <thead>
+  <tr>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Seat number</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Is Premium</th>
+    <th style="border: 2px solid black;padding: 5px;"></th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Cinema hall</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:if="${seats.empty}">
+    <td colspan="2"> No ticket buyers Available</td>
+  </tr>
+  <tr th:each="seat : ${seats}">
+    <td class="align-middle" th:text="${seat.id}"></td>
+    <td class="align-middle" th:text="${seat.seatNumber}"></td>
+    <td class="align-middle" th:text="${seat.isPremium}"></td>
+    <td class="align-middle"></td>
+    <td class="align-middle" th:text="${seat.tickets}"></td>
+    <td class="align-middle" th:text="${seat.cinemaHall}"></td>
+    <td>
+      <a
+              th:href="@{/front/v1/seats/update/{id}(id=${seat.id})}"
+              style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+      >Update</a>
+      <a
+              th:href="@{/front/v1/seats/delete/{id}(id=${seat.id})}"
+              style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+      >Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
