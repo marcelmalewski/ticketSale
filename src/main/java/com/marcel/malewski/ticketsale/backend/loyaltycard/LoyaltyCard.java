@@ -2,9 +2,7 @@ package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,6 +12,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoyaltyCard {
    @Id
    @SequenceGenerator(
@@ -33,11 +33,11 @@ public class LoyaltyCard {
    private TicketBuyer ticketBuyer;
 
    public LoyaltyCardWithValidationDto toLoyaltyCardWithValidationDto() {
-      LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = new LoyaltyCardWithValidationDto();
-      loyaltyCardWithValidationDto.setId(this.id);
-      loyaltyCardWithValidationDto.setMoneySpent(this.moneySpent);
-      loyaltyCardWithValidationDto.setNumberOfWatchedMovies(this.numberOfWatchedMovies);
-      loyaltyCardWithValidationDto.setDiscountOnTheNextTicket(this.discountOnTheNextTicket);
-      return loyaltyCardWithValidationDto;
+      return new LoyaltyCardWithValidationDto(
+               this.id,
+               this.moneySpent,
+               this.numberOfWatchedMovies,
+               this.discountOnTheNextTicket
+      );
    }
 }

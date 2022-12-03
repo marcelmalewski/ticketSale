@@ -2,7 +2,9 @@ package com.marcel.malewski.ticketsale.front.dto;
 
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoyaltyCardWithValidationDto {
    private Long id;
    @Min(value = 0, message = "Money spent must be greater than or equal to 0")
@@ -23,15 +27,13 @@ public class LoyaltyCardWithValidationDto {
    @NotNull(message = "Discount is mandatory")
    private Integer discountOnTheNextTicket;
 
-   public LoyaltyCardWithValidationDto() {
-   }
-
    public LoyaltyCard toLoyaltyCard() {
-         LoyaltyCard loyaltyCard = new LoyaltyCard();
-         loyaltyCard.setId(this.id);
-         loyaltyCard.setMoneySpent(this.moneySpent);
-         loyaltyCard.setNumberOfWatchedMovies(this.numberOfWatchedMovies);
-         loyaltyCard.setDiscountOnTheNextTicket(this.discountOnTheNextTicket);
-         return loyaltyCard;
+         return new LoyaltyCard(
+                   this.id,
+                   this.moneySpent,
+                   this.numberOfWatchedMovies,
+                   this.discountOnTheNextTicket,
+                   null
+         );
    }
 }

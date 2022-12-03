@@ -1,9 +1,11 @@
 package com.marcel.malewski.ticketsale.front.dto;
 
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.front.constraint.EnumConstraint;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -20,13 +22,25 @@ public class TicketBuyerWithValidationDto {
    private String password;
    @PastOrPresent(message = "Date of birth must be in the past or present")
    @NotNull(message = "Date of birth is mandatory")
+   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
    private Date dateOfBirth;
-   @Email(message = "Email should be valid")
+   @Email(message = "Email should be valid email address")
    @NotBlank(message = "Email is mandatory")
    private String email;
-   //@EnumConstraint(regexp = "CHILD|ADULT|SENIOR", message = "Age range must be one of: CHILD, ADULT, SENIOR")
-   private AgeRange ageRange;
+   @EnumConstraint(regexp = "CHILD|ADULT|SENIOR", message = "Age range have to be one of: CHILD, ADULT, SENIOR")
+   private String ageRange;
 
-   public TicketBuyerWithValidationDto() {
+   public TicketBuyer toTicketBuyer() {
+      return new TicketBuyer(
+              this.id,
+              this.firstName,
+              this.secondName,
+              this.password,
+              this.dateOfBirth,
+              this.email,
+              AgeRange.valueOf(this.ageRange),
+              null,
+              null
+      );
    }
 }

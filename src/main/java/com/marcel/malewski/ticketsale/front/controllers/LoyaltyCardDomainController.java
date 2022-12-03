@@ -3,7 +3,6 @@ package com.marcel.malewski.ticketsale.front.controllers;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCardService;
 import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;

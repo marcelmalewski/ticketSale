@@ -3,21 +3,20 @@ package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Past;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Set;
 
-@Getter
+
 @Entity
 @Table(name = "ticket_buyer")
 @Setter
+@Getter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class TicketBuyer {
    @Id
    @SequenceGenerator(
@@ -33,7 +32,7 @@ public class TicketBuyer {
    private String firstName;
    private String secondName;
    private String password;
-   private ZonedDateTime dateOfBirth;
+   private Date dateOfBirth;
    private String email;
    private AgeRange ageRange;
    @OneToOne
@@ -42,7 +41,4 @@ public class TicketBuyer {
    @ManyToMany(mappedBy = "ticketBuyers")
    @ToString.Exclude
    private Set<Ticket> tickets;
-
-   public TicketBuyer() {
-   }
 }

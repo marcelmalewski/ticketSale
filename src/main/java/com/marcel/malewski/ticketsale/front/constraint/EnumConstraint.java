@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 public @interface EnumConstraint {
    String regexp();
 
-   String message() default "Invalid age range, options: CHILD, ADULT, SENIOR";
+   String message() default "Invalid value";
 
    Class<?>[] groups() default {};
 

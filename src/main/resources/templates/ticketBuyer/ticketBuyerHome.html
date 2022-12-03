@@ -5,6 +5,49 @@
     <title>Ticket buyer home</title>
 </head>
 <body>
-HOME ticket buyer
+<a href="/front/v1/ticket-buyers/add"
+   style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 15px;"
+>Add new ticket buyer</a>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Date of birth </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Loyalty card </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${ticketBuyers.empty}">
+        <td colspan="2"> No ticket buyers Available </td>
+    </tr>
+    <tr th:each="ticketBuyer : ${ticketBuyers}">
+        <td class="align-middle" th:text="${ticketBuyer.id}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.firstName}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.secondName}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.password}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.dateOfBirth}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.email}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.ageRange}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.loyaltyCard}"></td>
+        <td class="align-middle" th:text="${ticketBuyer.tickets}"></td>
+        <td>
+            <a
+                    th:href="@{/front/v1/ticket-buyers/update/{id}(id=${ticketBuyer.id})}"
+                    style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+            >Update</a>
+            <a
+                    th:href="@{/front/v1/ticket-buyers/delete/{id}(id=${ticketBuyer.id})}"
+                    style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+            >Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

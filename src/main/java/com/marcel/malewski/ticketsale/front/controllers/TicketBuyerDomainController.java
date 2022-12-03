@@ -43,7 +43,8 @@ public class TicketBuyerDomainController {
       if(errors.hasErrors()){
          return "ticketBuyer/ticketBuyerAdd";
       }
-      System.out.println(ticketBuyerWithValidationDto);
-      return "redirect:/";
+      TicketBuyer ticketBuyer = ticketBuyerWithValidationDto.toTicketBuyer();
+      this.ticketBuyerService.postTicketBuyer(ticketBuyer);
+      return "redirect:/front/v1/ticket-buyers/home";
    }
 }

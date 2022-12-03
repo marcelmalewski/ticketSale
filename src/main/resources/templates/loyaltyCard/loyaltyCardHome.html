@@ -15,6 +15,7 @@
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Money spent </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Number of watched movies </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Discount on the next ticket </th>
+            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer </th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
             <td class="align-middle" th:text="${loyaltyCard.moneySpent}"></td>
             <td class="align-middle" th:text="${loyaltyCard.numberOfWatchedMovies}"></td>
             <td class="align-middle" th:text="${loyaltyCard.discountOnTheNextTicket}"></td>
+            <td class="align-middle" th:text="${loyaltyCard.TicketBuyer}"></td>
             <td>
                 <a
                         th:href="@{/front/v1/loyalty-cards/update/{id}(id=${loyaltyCard.id})}"
