@@ -11,20 +11,20 @@
 <table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
     <thead>
     <tr>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Date of birth </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Loyalty card </th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets </th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Date of birth</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Loyalty card</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets</th>
     </tr>
     </thead>
     <tbody>
     <tr th:if="${ticketBuyers.empty}">
-        <td colspan="2"> No ticket buyers Available </td>
+        <td colspan="2"> No ticket buyers Available</td>
     </tr>
     <tr th:each="ticketBuyer : ${ticketBuyers}">
         <td class="align-middle" th:text="${ticketBuyer.id}"></td>

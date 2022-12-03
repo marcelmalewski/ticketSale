@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket buyer update</title>
+</head>
+<body>
+<form method="POST" th:action="@{/front/v1/ticket-buyers/update/validate}" th:object="${ticketBuyerWithValidationDto}">
+    <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+       <h2>Form errors.</h2>
+      </span>
+    </div>
+    <br>
+
+    <label for="id">Id:</label>
+    <input type="text" id="id" name="id" th:field="*{id}" readonly="readonly"/>
+    <br>
+    <br>
+
+    <label for="firstName">first name:</label>
+    <input type="text" th:field="*{firstName}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('firstName')}"
+          th:errors="*{firstName}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="secondName">second name:</label>
+    <input type="text" th:field="*{secondName}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('secondName')}"
+          th:errors="*{secondName}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="password">password:</label>
+    <input type="text" th:field="*{password}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="dateOfBirth">date of birth:</label>
+    <input type="date" th:field="*{dateOfBirth}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('dateOfBirth')}"
+          th:errors="*{dateOfBirth}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="email">email:</label>
+    <input type="text" th:field="*{email}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}">Error
+    </span>
+    <br>
+    <br>
+
+    <label for="ageRange">ageRange:</label>
+    <input type="text" th:field="*{ageRange}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ageRange')}"
+          th:errors="*{ageRange}">
+    </span>
+    <br>
+    <br>
+
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

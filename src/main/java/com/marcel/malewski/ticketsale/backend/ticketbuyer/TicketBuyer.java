@@ -3,6 +3,7 @@ package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
+import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,4 +42,16 @@ public class TicketBuyer {
    @ManyToMany(mappedBy = "ticketBuyers")
    @ToString.Exclude
    private Set<Ticket> tickets;
+
+   public TicketBuyerWithValidationDto toTicketBuyerWithValidationDto() {
+      return new TicketBuyerWithValidationDto(
+              this.id,
+              this.firstName,
+              this.secondName,
+              this.password,
+              this.dateOfBirth,
+              this.email,
+              this.ageRange.getValue()
+      );
+   }
 }

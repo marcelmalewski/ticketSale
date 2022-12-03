@@ -3,7 +3,9 @@ package com.marcel.malewski.ticketsale.front.dto;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.front.constraint.EnumConstraint;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +13,8 @@ import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TicketBuyerWithValidationDto {
    private Long id;
    @NotBlank(message = "First name is mandatory")
@@ -39,6 +43,7 @@ public class TicketBuyerWithValidationDto {
               this.dateOfBirth,
               this.email,
               AgeRange.valueOf(this.ageRange),
+              //TODO mozliwe ze to tez trzeba przekaazywac
               null,
               null
       );
