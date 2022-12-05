@@ -12,6 +12,7 @@ import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +77,12 @@ public class SeatDomainController {
       }
       this.seatService.putSeatById(seatWithValidationDto.getId(), seatWithValidationDto);
 
+      return "redirect:/front/v1/seats/home";
+   }
+
+   @GetMapping("/delete/{id}")
+   public String processSeatDelete(@PathVariable(name = "id") long id) {
+      this.seatService.deleteSeatById(id);
       return "redirect:/front/v1/seats/home";
    }
 }
