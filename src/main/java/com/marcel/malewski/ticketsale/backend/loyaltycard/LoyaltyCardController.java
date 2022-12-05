@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,9 @@ public class LoyaltyCardController {
 
    @GetMapping
    @Operation(summary = "Get all loyalty cards")
-   public ResponseEntity<List<LoyaltyCard>> getAllLoyaltyCards() {
-      List<LoyaltyCard> loyaltyCards = this.loyaltyCardService.getAllLoyaltyCards();
-      return new ResponseEntity<>(loyaltyCards, HttpStatus.OK);
+   public ResponseEntity<List<LoyaltyCardResponseDto>> getAllLoyaltyCards() {
+      List<LoyaltyCardResponseDto> loyaltyCardsResponseDto = this.loyaltyCardService.getAllLoyaltyCards();
+      return new ResponseEntity<>(loyaltyCardsResponseDto, HttpStatus.OK);
    }
 
 //   @GetMapping(path = "{id}")

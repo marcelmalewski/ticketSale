@@ -16,13 +16,13 @@ public class SeatResponseDto {
 //   private Set<Ticket> tickets;
    private CinemaHall cinemaHall;
 
-   static public List<SeatResponseDto> seatsResponseDtoFromSeats(List<Seat> seats) {
+   static public List<SeatResponseDto> seatsResponseDtoFrom(List<Seat> seats) {
       return seats.stream()
               .map(SeatResponseDto::from)
               .toList();
    }
 
-static public SeatResponseDto from(Seat seat) {
-      return new SeatResponseDto(seat.getId(), seat.getSeatNumber(), seat.getIsPremium(), seat.getCinemaHall());
+   static public SeatResponseDto from(Seat seat) {
+         return new SeatResponseDto(seat.getId(), seat.getSeatNumber(), seat.getIsPremium(), seat.getCinemaHall());
    }
 }

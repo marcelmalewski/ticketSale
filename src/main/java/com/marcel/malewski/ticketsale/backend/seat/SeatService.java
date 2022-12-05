@@ -7,7 +7,6 @@ import com.marcel.malewski.ticketsale.backend.seat.exceptions.SeatNotFoundExcept
 import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class SeatService {
 
    public List<SeatResponseDto> getAllSeats() {
       List<Seat> seats = seatRepository.findAll();
-      return SeatResponseDto.seatsResponseDtoFromSeats(seats);
+      return SeatResponseDto.seatsResponseDtoFrom(seats);
    }
 
    public Seat getSeatById(Long id) {

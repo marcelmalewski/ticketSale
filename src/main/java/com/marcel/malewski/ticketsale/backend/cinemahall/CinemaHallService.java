@@ -18,7 +18,7 @@ public class CinemaHallService {
 
    public List<CinemaHallResponseDto> getAllCinemaHalls() {
       List<CinemaHall> cinemaHalls = cinemaHallRepository.findAll();
-      return CinemaHallResponseDto.cinemaHallsResponseDtoFromCinemaHalls(cinemaHalls);
+      return CinemaHallResponseDto.cinemaHallsResponseDtoFrom(cinemaHalls);
    }
 
    public CinemaHall getCinemaHallById(long id) {

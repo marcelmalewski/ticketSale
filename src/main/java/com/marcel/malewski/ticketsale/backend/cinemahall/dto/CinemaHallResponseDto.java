@@ -14,7 +14,7 @@ public class CinemaHallResponseDto {
    private Integer hallNumber;
    private List<Long> seatsIds;
 
-   static public List<CinemaHallResponseDto> cinemaHallsResponseDtoFromCinemaHalls(List<CinemaHall> cinemaHalls) {
+   static public List<CinemaHallResponseDto> cinemaHallsResponseDtoFrom(List<CinemaHall> cinemaHalls) {
       return cinemaHalls.stream()
               .map(CinemaHallResponseDto::from)
               .toList();

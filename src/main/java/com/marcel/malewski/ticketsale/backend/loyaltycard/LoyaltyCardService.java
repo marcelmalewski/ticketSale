@@ -1,6 +1,8 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.exceptions.LoyaltyCardNotFoundException;
+import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,15 @@ public class LoyaltyCardService {
       this.loyaltyCardRepository = loyaltyCardRepository;
    }
 
-   public List<LoyaltyCard> getAllLoyaltyCards() {
-      return this.loyaltyCardRepository.findAll();
+   public List<LoyaltyCardResponseDto> getAllLoyaltyCards() {
+      List<LoyaltyCard> loyaltyCards = this.loyaltyCardRepository.findAll();
+      return LoyaltyCardResponseDto.loyaltyCardsResponsDtoFrom(loyaltyCards);
+   }
+
+   public LoyaltyCardWithValidationDto getLoyaltyCardWithValidationById(long id) {
+      LoyaltyCard loyaltyCard = this.loyaltyCardRepository.findById(id)
+              .orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
+      return LoyaltyCardWithValidationDto.from(loyaltyCard);
    }
 
 //   public LoyaltyCard getLoyaltyCardById(long id) {
