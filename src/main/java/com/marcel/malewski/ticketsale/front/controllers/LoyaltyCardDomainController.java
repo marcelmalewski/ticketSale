@@ -43,16 +43,13 @@ public class LoyaltyCardDomainController {
       if (errors.hasErrors()) {
          return "loyaltyCard/loyaltyCardAdd";
       }
-      LoyaltyCard loyaltyCard = loyaltyCardWithValidationDto.toLoyaltyCard();
-      this.loyaltyCardService.postLoyaltyCard(loyaltyCard);
-
+      this.loyaltyCardService.postLoyaltyCard(loyaltyCardWithValidationDto);
       return "redirect:/front/v1/loyalty-cards/home";
    }
 
    @RequestMapping("/update/{id}")
    public String getLoyaltyCardPut(@PathVariable(name = "id") long id, Model model) {
-      LoyaltyCard loyaltyCardToUpdate = this.loyaltyCardService.getLoyaltyCardById(id);
-      LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = loyaltyCardToUpdate.toLoyaltyCardWithValidationDto();
+      LoyaltyCardWithValidationDto loyaltyCardWithValidationDto = this.loyaltyCardService.getLoyaltyCardWithValidationById(id);
       model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
       return "loyaltyCard/loyaltyCardUpdate";
    }
@@ -65,8 +62,7 @@ public class LoyaltyCardDomainController {
       if (errors.hasErrors()) {
          return "loyaltyCard/loyaltyCardUpdate";
       }
-      LoyaltyCard loyaltyCard = loyaltyCardWithValidationDto.toLoyaltyCard();
-      this.loyaltyCardService.putLoyaltyCardById(loyaltyCard.getId(), loyaltyCard);
+      this.loyaltyCardService.putLoyaltyCardById(loyaltyCardWithValidationDto.getId(), loyaltyCardWithValidationDto);
 
       return "redirect:/front/v1/loyalty-cards/home";
    }

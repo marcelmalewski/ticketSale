@@ -15,26 +15,26 @@
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Money spent </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Number of watched movies </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Discount on the next ticket </th>
-            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer </th>
+            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer id </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${loyaltyCards.empty}">
+        <tr th:if="${loyaltyCardsResponseDto.empty}">
             <td colspan="2"> No Loyalty cards Available </td>
         </tr>
-        <tr th:each="loyaltyCard : ${loyaltyCards}">
-            <td class="align-middle" th:text="${loyaltyCard.id}"></td>
-            <td class="align-middle" th:text="${loyaltyCard.moneySpent}"></td>
-            <td class="align-middle" th:text="${loyaltyCard.numberOfWatchedMovies}"></td>
-            <td class="align-middle" th:text="${loyaltyCard.discountOnTheNextTicket}"></td>
-            <td class="align-middle" th:text="${loyaltyCard.TicketBuyer}"></td>
+        <tr th:each="loyaltyCardResponseDto : ${loyaltyCardsResponseDto}">
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.id}"></td>
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.moneySpent}"></td>
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.numberOfWatchedMovies}"></td>
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.discountOnTheNextTicket}"></td>
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.TicketBuyerId}"></td>
             <td>
                 <a
-                        th:href="@{/front/v1/loyalty-cards/update/{id}(id=${loyaltyCard.id})}"
+                        th:href="@{/front/v1/loyalty-cards/update/{id}(id=${loyaltyCardResponseDto.id})}"
                         style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
                 >Update</a>
                 <a
-                        th:href="@{/front/v1/loyalty-cards/delete/{id}(id=${loyaltyCard.id})}"
+                        th:href="@{/front/v1/loyalty-cards/delete/{id}(id=${loyaltyCardResponseDto.id})}"
                         style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
                 >Delete</a>
             </td>

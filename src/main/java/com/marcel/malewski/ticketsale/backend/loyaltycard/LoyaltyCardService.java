@@ -32,16 +32,20 @@ public class LoyaltyCardService {
 //      return this.loyaltyCardRepository.findById(id).orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
 //   }
 
-   public LoyaltyCard postLoyaltyCard(LoyaltyCard loyaltyCard) {
-      return this.loyaltyCardRepository.save(loyaltyCard);
+   public void postLoyaltyCard(LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
+      LoyaltyCard loyaltyCard = LoyaltyCard.from(loyaltyCardWithValidationDto);
+      this.loyaltyCardRepository.save(loyaltyCard);
    }
 
-   public LoyaltyCard putLoyaltyCardById(long id, LoyaltyCard loyaltyCard) {
-      if (!this.loyaltyCardRepository.existsById(id))
-         throw new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id));
+   public void putLoyaltyCardById(long id, LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
+      LoyaltyCard loyaltyCardToUpdate = this.loyaltyCardRepository.findById(id)
+              .orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
 
-      loyaltyCard.setId(id);
-      return this.loyaltyCardRepository.save(loyaltyCard);
+      loyaltyCardToUpdate.setMoneySpent(loyaltyCardWithValidationDto.getMoneySpent());
+      loyaltyCardToUpdate.setNumberOfWatchedMovies(loyaltyCardWithValidationDto.getNumberOfWatchedMovies());
+      loyaltyCardToUpdate.setDiscountOnTheNextTicket(loyaltyCardWithValidationDto.getDiscountOnTheNextTicket());
+
+      this.loyaltyCardRepository.save(loyaltyCardToUpdate);
    }
 
 //   public LoyaltyCard patchLoyaltyCardById(long id, LoyaltyCard loyaltyCard) {

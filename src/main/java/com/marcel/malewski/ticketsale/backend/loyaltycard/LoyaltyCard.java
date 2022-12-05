@@ -38,12 +38,12 @@ public class LoyaltyCard {
       this.discountOnTheNextTicket = discountOnTheNextTicket;
    }
 
-   public LoyaltyCardWithValidationDto toLoyaltyCardWithValidationDto() {
-      return new LoyaltyCardWithValidationDto(
-               this.id,
-               this.moneySpent,
-               this.numberOfWatchedMovies,
-               this.discountOnTheNextTicket
+   static public LoyaltyCard from(LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
+      return new LoyaltyCard(
+               loyaltyCardWithValidationDto.getId(),
+               loyaltyCardWithValidationDto.getMoneySpent(),
+               loyaltyCardWithValidationDto.getNumberOfWatchedMovies(),
+               loyaltyCardWithValidationDto.getDiscountOnTheNextTicket()
       );
    }
 }

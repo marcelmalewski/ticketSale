@@ -1,6 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
+import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,16 +35,16 @@ public class LoyaltyCardController {
 
    @PostMapping
    @Operation(summary = "Create new loyalty card")
-   public ResponseEntity<LoyaltyCard> postLoyaltyCard(@Valid @RequestBody LoyaltyCard loyaltyCard) {
-      LoyaltyCard createdLoyaltyCard = this.loyaltyCardService.postLoyaltyCard(loyaltyCard);
-      return new ResponseEntity<>(createdLoyaltyCard, HttpStatus.CREATED);
+   public ResponseEntity<String> postLoyaltyCard(@Valid @RequestBody LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
+      this.loyaltyCardService.postLoyaltyCard(loyaltyCardWithValidationDto);
+      return new ResponseEntity<>("Created", HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update loyalty card by id")
-   public ResponseEntity<LoyaltyCard> updateLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCard loyaltyCard) {
-      LoyaltyCard updatedLoyaltyCard = this.loyaltyCardService.putLoyaltyCardById(id, loyaltyCard);
-      return new ResponseEntity<>(updatedLoyaltyCard, HttpStatus.OK);
+   public ResponseEntity<String> updateLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
+      this.loyaltyCardService.putLoyaltyCardById(id, loyaltyCardWithValidationDto);
+      return new ResponseEntity<>("Updated", HttpStatus.OK);
    }
 
 //   @PatchMapping(path = "{id}")

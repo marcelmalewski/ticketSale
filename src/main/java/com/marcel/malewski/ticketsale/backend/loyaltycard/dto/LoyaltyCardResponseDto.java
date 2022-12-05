@@ -23,6 +23,9 @@ public class LoyaltyCardResponseDto {
    }
 
    static public LoyaltyCardResponseDto from(LoyaltyCard loyaltyCard) {
-      return new LoyaltyCardResponseDto(loyaltyCard.getId(), loyaltyCard.getMoneySpent(), loyaltyCard.getNumberOfWatchedMovies(), loyaltyCard.getDiscountOnTheNextTicket(), loyaltyCard.getTicketBuyer().getId());
+      Long ticketBuyerId = (loyaltyCard.getTicketBuyer() != null) ? loyaltyCard.getTicketBuyer().getId() : null;
+
+      //Ticket buyera moze nie byc
+      return new LoyaltyCardResponseDto(loyaltyCard.getId(), loyaltyCard.getMoneySpent(), loyaltyCard.getNumberOfWatchedMovies(), loyaltyCard.getDiscountOnTheNextTicket(), ticketBuyerId);
    }
 }

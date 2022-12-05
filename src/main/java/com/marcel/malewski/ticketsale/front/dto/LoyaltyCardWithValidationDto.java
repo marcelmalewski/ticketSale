@@ -27,12 +27,12 @@ public class LoyaltyCardWithValidationDto {
    @NotNull(message = "Discount is mandatory")
    private Integer discountOnTheNextTicket;
 
-   public LoyaltyCard toLoyaltyCard() {
-         return new LoyaltyCard(
-                   this.id,
-                   this.moneySpent,
-                   this.numberOfWatchedMovies,
-                   this.discountOnTheNextTicket
+   public static LoyaltyCardWithValidationDto from(LoyaltyCard loyaltyCard) {
+         return new LoyaltyCardWithValidationDto(
+                   loyaltyCard.getId(),
+                   loyaltyCard.getMoneySpent(),
+                   loyaltyCard.getNumberOfWatchedMovies(),
+                   loyaltyCard.getDiscountOnTheNextTicket()
          );
    }
 }
