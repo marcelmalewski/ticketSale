@@ -42,7 +42,7 @@ public class SeatController {
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update seat by id")
-   public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @Valid @RequestBody Seat seat) {
+   public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @Valid @RequestBody SeatWithValidationDto seat) {
       Seat updatedSeat = this.seatService.putSeatById(id, seat);
       return new ResponseEntity<>(updatedSeat, HttpStatus.OK);
    }

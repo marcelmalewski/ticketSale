@@ -30,20 +30,23 @@ public class SeatService {
               .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
    }
 
-   public Seat postSeat(@Valid SeatWithValidationDto seatWithValidationDto) {
-      Seat seat = seatWithValidationDto.toSeat();
+   public Seat postSeat(SeatWithValidationDto seatWithValidationDto) {
       CinemaHall cinemaHall = this.cinemaHallRepository.getReferenceById(seatWithValidationDto.getCinemaHallId());
-      seat.setCinemaHall(cinemaHall);
+      Seat seat = Seat.from(seatWithValidationDto, cinemaHall);
 
       return seatRepository.save(seat);
    }
 
-   public Seat putSeatById(Long id, Seat seat) {
-      if(!seatRepository.existsById(id))
-         throw new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id));
+   public Seat putSeatById(Long id, SeatWithValidationDto seatWithValidationDto) {
+      Seat seatToUpdate = this.seatRepository.findById(id)
+              .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
 
-      seat.setId(id);
-      return seatRepository.save(seat);
+      CinemaHall cinemaHall = this.cinemaHallRepository.getReferenceById(seatWithValidationDto.getCinemaHallId());
+      seatToUpdate.setSeatNumber(seatWithValidationDto.getSeatNumber());
+      seatToUpdate.setIsPremium(seatWithValidationDto.getIsPremium());
+      seatToUpdate.setCinemaHall(cinemaHall);
+
+      return seatRepository.save(seatToUpdate);
    }
 
    public Seat patchSeatById(Long id, Seat seat) {

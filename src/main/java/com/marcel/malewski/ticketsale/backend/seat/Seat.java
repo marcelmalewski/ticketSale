@@ -2,6 +2,7 @@ package com.marcel.malewski.ticketsale.backend.seat;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
+import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,9 +39,19 @@ public class Seat {
    //w zakresie jeden sali nie moze sie powtarzac seatNumber
    private CinemaHall cinemaHall;
 
-   public Seat(Long id, Integer seatNumber, Boolean isPremium) {
+   public Seat(Long id, Integer seatNumber, Boolean isPremium, CinemaHall cinemaHall) {
       this.id = id;
       this.seatNumber = seatNumber;
       this.isPremium = isPremium;
+      this.cinemaHall = cinemaHall;
+   }
+
+   public static Seat from(SeatWithValidationDto seatWithValidationDto, CinemaHall cinemaHall) {
+      return new Seat(
+              seatWithValidationDto.getId(),
+              seatWithValidationDto.getSeatNumber(),
+              seatWithValidationDto.getIsPremium(),
+              cinemaHall
+      );
    }
 }

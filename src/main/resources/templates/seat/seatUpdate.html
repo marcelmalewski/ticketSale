@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seat update</title>
+</head>
+<body>
+<form method="POST" th:action="@{/front/v1/seats/update/validate}" th:object="${seatWithValidationDto}">
+  <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+       <h2>Form errors.</h2>
+      </span>
+  </div>
+  <br>
+
+  <label for="id">Id:</label>
+  <input type="text" id="id" name="id" th:field="*{id}" readonly="readonly"/>
+  <br>
+  <br>
+
+  <label for="seatNumber">seat number:</label>
+  <input type="number" th:field="*{seatNumber}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('seatNumber')}"
+        th:errors="*{seatNumber}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="isPremium">is premium:</label>
+  <input type="checkbox" th:field="*{isPremium}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('isPremium')}"
+        th:errors="*{isPremium}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="cinemaHallId">cinema hall id:</label>
+  <input type="number" th:field="*{cinemaHallId}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('cinemaHallId')}"
+        th:errors="*{cinemaHallId}">Error
+    </span>
+  <br>
+  <br>
+
+  <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

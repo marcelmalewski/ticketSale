@@ -1,15 +1,18 @@
 package com.marcel.malewski.ticketsale.front.controllers;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
+import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.seat.SeatService;
 import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
+import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
 import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,14 +36,14 @@ public class SeatDomainController {
    }
 
    @RequestMapping("/add")
-   public String getTicketBuyerAdd(Model model) {
+   public String getSeatAdd(Model model) {
       SeatWithValidationDto seatWithValidationDto = new SeatWithValidationDto();
       model.addAttribute("seatWithValidationDto", seatWithValidationDto);
       return "seat/seatAdd";
    }
 
    @PostMapping("/add/validate")
-   public String processTicketBuyerPost(
+   public String processSeatPost(
            @Valid SeatWithValidationDto seatWithValidationDto,
            Errors errors, Model model){
       model.addAttribute("seatWithValidationDto", seatWithValidationDto);
@@ -49,6 +52,30 @@ public class SeatDomainController {
       }
 
       this.seatService.postSeat(seatWithValidationDto);
+      return "redirect:/front/v1/seats/home";
+   }
+
+   @RequestMapping("/update/{id}")
+   public String getSeatPut(@PathVariable(name = "id") long id, Model model) {
+      Seat seatToUpdate = this.seatService.getSeatById(id);
+      SeatWithValidationDto seatWithValidationDto = SeatWithValidationDto.from(seatToUpdate);
+      model.addAttribute("seatWithValidationDto", seatWithValidationDto);
+      model.addAttribute("id", id);
+      return "seat/seatUpdate";
+   }
+
+   @PostMapping("/update/validate")
+   public String processSeatPut(
+           @Valid SeatWithValidationDto seatWithValidationDto,
+           Errors errors, Model model) {
+      model.addAttribute("seatWithValidationDto", seatWithValidationDto);
+      model.addAttribute("id", seatWithValidationDto.getId());
+
+      if (errors.hasErrors()) {
+         return "seat/seatUpdate";
+      }
+      this.seatService.putSeatById(seatWithValidationDto.getId(), seatWithValidationDto);
+
       return "redirect:/front/v1/seats/home";
    }
 }
