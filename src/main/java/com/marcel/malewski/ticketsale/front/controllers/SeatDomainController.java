@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
@@ -41,7 +40,7 @@ public class SeatDomainController {
 
    @PostMapping("/add/validate")
    public String processTicketBuyerPost(
-           @Valid @RequestBody SeatWithValidationDto seatWithValidationDto,
+           @Valid SeatWithValidationDto seatWithValidationDto,
            Errors errors, Model model){
       model.addAttribute("seatWithValidationDto", seatWithValidationDto);
       if(errors.hasErrors()){

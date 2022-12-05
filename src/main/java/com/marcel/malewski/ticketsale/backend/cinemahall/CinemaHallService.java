@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
 import com.marcel.malewski.ticketsale.backend.cinemahall.exceptions.CinemaHallNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,9 @@ public class CinemaHallService {
       this.cinemaHallRepository = cinemaHallRepository;
    }
 
-   public List<CinemaHall> getAllCinemaHalls() {
-      return cinemaHallRepository.findAll();
+   public List<CinemaHallResponseDto> getAllCinemaHalls() {
+      List<CinemaHall> cinemaHalls = cinemaHallRepository.findAll();
+      return CinemaHallResponseDto.cinemaHallsResponseDtoFromCinemaHalls(cinemaHalls);
    }
 
    public CinemaHall getCinemaHallById(long id) {

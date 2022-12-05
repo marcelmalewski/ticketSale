@@ -33,6 +33,16 @@
     <br>
     <br>
 
+    <label for="cinemaHallId">cinema hall id:</label>
+    <input type="number" th:field="*{cinemaHallId}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('cinemaHallId')}"
+          th:errors="*{cinemaHallId}">Error
+    </span>
+    <br>
+    <br>
+
     <input type="submit" value="Submit"/>
 </form>
 </body>

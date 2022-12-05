@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class CinemaHallController {
 
    @GetMapping
    @Operation(summary = "Get all cinema halls")
-   public ResponseEntity<List<CinemaHall>> getAllCinemaHalls() {
-      List<CinemaHall> cinemaHalls = this.cinemaHallService.getAllCinemaHalls();
+   public ResponseEntity<List<CinemaHallResponseDto>> getAllCinemaHalls() {
+      List<CinemaHallResponseDto> cinemaHalls = this.cinemaHallService.getAllCinemaHalls();
       return new ResponseEntity<>(cinemaHalls, HttpStatus.OK);
    }
 

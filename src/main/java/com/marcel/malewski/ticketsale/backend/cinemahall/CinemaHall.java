@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +8,9 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -33,5 +36,5 @@ public class CinemaHall {
    @Size(max = 50, message = "Cinema hall cannot have more than 50 seats")
    @ToString.Exclude
    //czy jak powstaje miejsce i dodaje do siebie id cinema hall i bedzie to 51 to nie bedzie bledu?
-   private Set<Seat> seats;
+   private List<Seat> seats;
 }
