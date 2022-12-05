@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.seat;
 
+import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class SeatController {
 
    @PostMapping
    @Operation(summary = "Create new seat")
-   public ResponseEntity<Seat> postSeat(@Valid @RequestBody Seat seat) {
-      Seat createdSeat = this.seatService.postSeat(seat);
+   public ResponseEntity<Seat> postSeat(@Valid @RequestBody SeatWithValidationDto seatWithValidationDto) {
+      Seat createdSeat = this.seatService.postSeat(seatWithValidationDto);
       return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
    }
 

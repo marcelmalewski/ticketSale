@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 public class LoyaltyCard {
    @Id
@@ -31,6 +30,13 @@ public class LoyaltyCard {
    private Integer discountOnTheNextTicket;
    @OneToOne(mappedBy = "loyaltyCard")
    private TicketBuyer ticketBuyer;
+
+   public LoyaltyCard(Long id, BigDecimal moneySpent, Long numberOfWatchedMovies, Integer discountOnTheNextTicket) {
+      this.id = id;
+      this.moneySpent = moneySpent;
+      this.numberOfWatchedMovies = numberOfWatchedMovies;
+      this.discountOnTheNextTicket = discountOnTheNextTicket;
+   }
 
    public LoyaltyCardWithValidationDto toLoyaltyCardWithValidationDto() {
       return new LoyaltyCardWithValidationDto(

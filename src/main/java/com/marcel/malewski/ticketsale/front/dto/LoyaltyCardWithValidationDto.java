@@ -32,8 +32,7 @@ public class LoyaltyCardWithValidationDto {
                    this.id,
                    this.moneySpent,
                    this.numberOfWatchedMovies,
-                   this.discountOnTheNextTicket,
-                   null
+                   this.discountOnTheNextTicket
          );
    }
 }

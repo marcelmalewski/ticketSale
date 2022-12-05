@@ -2,9 +2,7 @@ package com.marcel.malewski.ticketsale.backend.seat;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -16,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "seat")
 @ToString
+@NoArgsConstructor
 public class Seat {
    @Id
    @SequenceGenerator(
@@ -28,8 +27,6 @@ public class Seat {
            generator = "seat_sequence"
    )
    private Long id;
-   @Max(value = 50, message = "Seat number must be less than 50")
-   @Positive(message = "Seat number must be positive")
    private Integer seatNumber;
    private Boolean isPremium;
    @ManyToMany(mappedBy = "seats")
@@ -39,4 +36,10 @@ public class Seat {
    @JoinColumn(name = "cinema_hall_id", nullable = false)
    //w zakresie jeden sali nie moze sie powtarzac seatNumber
    private CinemaHall cinemaHall;
+
+   public Seat(Long id, Integer seatNumber, Boolean isPremium) {
+      this.id = id;
+      this.seatNumber = seatNumber;
+      this.isPremium = isPremium;
+   }
 }

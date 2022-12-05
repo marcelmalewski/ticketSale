@@ -42,10 +42,7 @@ public class TicketBuyerWithValidationDto {
               this.password,
               this.dateOfBirth,
               this.email,
-              AgeRange.valueOf(this.ageRange),
-              //TODO mozliwe ze to tez trzeba przekaazywac
-              null,
-              null
+              AgeRange.valueOf(this.ageRange)
       );
    }
 }

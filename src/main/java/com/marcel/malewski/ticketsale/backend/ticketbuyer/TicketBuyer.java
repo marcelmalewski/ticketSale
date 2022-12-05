@@ -16,7 +16,6 @@ import java.util.Set;
 @Setter
 @Getter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 public class TicketBuyer {
    @Id
@@ -42,6 +41,16 @@ public class TicketBuyer {
    @ManyToMany(mappedBy = "ticketBuyers")
    @ToString.Exclude
    private Set<Ticket> tickets;
+
+   public TicketBuyer(Long id, String firstName, String secondName, String password, Date dateOfBirth, String email, AgeRange ageRange) {
+      this.id = id;
+      this.firstName = firstName;
+      this.secondName = secondName;
+      this.password = password;
+      this.dateOfBirth = dateOfBirth;
+      this.email = email;
+      this.ageRange = ageRange;
+   }
 
    public TicketBuyerWithValidationDto toTicketBuyerWithValidationDto() {
       return new TicketBuyerWithValidationDto(
