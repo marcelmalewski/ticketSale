@@ -19,9 +19,9 @@ public class LoyaltyCardService {
       return this.loyaltyCardRepository.findAll();
    }
 
-   public LoyaltyCard getLoyaltyCardById(long id) {
-      return this.loyaltyCardRepository.findById(id).orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
-   }
+//   public LoyaltyCard getLoyaltyCardById(long id) {
+//      return this.loyaltyCardRepository.findById(id).orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
+//   }
 
    public LoyaltyCard postLoyaltyCard(LoyaltyCard loyaltyCard) {
       return this.loyaltyCardRepository.save(loyaltyCard);
@@ -35,22 +35,22 @@ public class LoyaltyCardService {
       return this.loyaltyCardRepository.save(loyaltyCard);
    }
 
-   public LoyaltyCard patchLoyaltyCardById(long id, LoyaltyCard loyaltyCard) {
-      LoyaltyCard currentLoyaltyCard = this.loyaltyCardRepository.findById(id)
-              .orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
-
-      currentLoyaltyCard.setMoneySpent(
-              (loyaltyCard.getMoneySpent() != null) ? loyaltyCard.getMoneySpent() : currentLoyaltyCard.getMoneySpent()
-      );
-      currentLoyaltyCard.setNumberOfWatchedMovies(
-              (loyaltyCard.getNumberOfWatchedMovies() != null) ? loyaltyCard.getNumberOfWatchedMovies() : currentLoyaltyCard.getNumberOfWatchedMovies()
-      );
-      currentLoyaltyCard.setDiscountOnTheNextTicket(
-              (loyaltyCard.getDiscountOnTheNextTicket() != null) ? loyaltyCard.getDiscountOnTheNextTicket() : currentLoyaltyCard.getDiscountOnTheNextTicket()
-      );
-
-      return this.loyaltyCardRepository.save(currentLoyaltyCard);
-   }
+//   public LoyaltyCard patchLoyaltyCardById(long id, LoyaltyCard loyaltyCard) {
+//      LoyaltyCard currentLoyaltyCard = this.loyaltyCardRepository.findById(id)
+//              .orElseThrow(() -> new LoyaltyCardNotFoundException(String.format(LOYALTY_CARD_BY_ID_NOT_FOUND_MESSAGE, id)));
+//
+//      currentLoyaltyCard.setMoneySpent(
+//              (loyaltyCard.getMoneySpent() != null) ? loyaltyCard.getMoneySpent() : currentLoyaltyCard.getMoneySpent()
+//      );
+//      currentLoyaltyCard.setNumberOfWatchedMovies(
+//              (loyaltyCard.getNumberOfWatchedMovies() != null) ? loyaltyCard.getNumberOfWatchedMovies() : currentLoyaltyCard.getNumberOfWatchedMovies()
+//      );
+//      currentLoyaltyCard.setDiscountOnTheNextTicket(
+//              (loyaltyCard.getDiscountOnTheNextTicket() != null) ? loyaltyCard.getDiscountOnTheNextTicket() : currentLoyaltyCard.getDiscountOnTheNextTicket()
+//      );
+//
+//      return this.loyaltyCardRepository.save(currentLoyaltyCard);
+//   }
 
    public void deleteLoyaltyCardById(long id) {
       if (!this.loyaltyCardRepository.existsById(id))

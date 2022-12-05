@@ -8,8 +8,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-
+import java.util.List;
 
 @Entity
 @Table(name = "ticket_buyer")
@@ -40,7 +39,7 @@ public class TicketBuyer {
    private LoyaltyCard loyaltyCard;
    @ManyToMany(mappedBy = "ticketBuyers")
    @ToString.Exclude
-   private Set<Ticket> tickets;
+   private List<Ticket> tickets;
 
    public TicketBuyer(Long id, String firstName, String secondName, String password, Date dateOfBirth, String email, AgeRange ageRange) {
       this.id = id;

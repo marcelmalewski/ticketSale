@@ -11,7 +11,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Positive;
 import java.time.ZonedDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,12 +43,12 @@ public class Ticket {
    )
    @ToString.Exclude
    //sprawdzenie z liczbą osób jest taka sama jak liczba miejsc
-   private Set<TicketBuyer> ticketBuyers;
+   private List<TicketBuyer> ticketBuyers;
    @ManyToMany
    @JoinTable(name = "ticket_seat",
            joinColumns = { @JoinColumn(name = "ticket_id", referencedColumnName = "id")},
            inverseJoinColumns = { @JoinColumn(name = "seat_id", referencedColumnName = "id")}
    )
    @ToString.Exclude
-   private Set<Seat> seats;
+   private List<Seat> seats;
 }

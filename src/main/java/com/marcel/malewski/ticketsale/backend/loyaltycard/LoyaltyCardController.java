@@ -24,12 +24,12 @@ public class LoyaltyCardController {
       return new ResponseEntity<>(loyaltyCards, HttpStatus.OK);
    }
 
-   @GetMapping(path = "{id}")
-   @Operation(summary = "Get loyalty card by id")
-   public ResponseEntity<LoyaltyCard> getLoyaltyCardById(@PathVariable("id") long id) {
-      LoyaltyCard loyaltyCard = this.loyaltyCardService.getLoyaltyCardById(id);
-      return new ResponseEntity<>(loyaltyCard, HttpStatus.OK);
-   }
+//   @GetMapping(path = "{id}")
+//   @Operation(summary = "Get loyalty card by id")
+//   public ResponseEntity<LoyaltyCard> getLoyaltyCardById(@PathVariable("id") long id) {
+//      LoyaltyCard loyaltyCard = this.loyaltyCardService.getLoyaltyCardById(id);
+//      return new ResponseEntity<>(loyaltyCard, HttpStatus.OK);
+//   }
 
    @PostMapping
    @Operation(summary = "Create new loyalty card")
@@ -45,12 +45,12 @@ public class LoyaltyCardController {
       return new ResponseEntity<>(updatedLoyaltyCard, HttpStatus.OK);
    }
 
-   @PatchMapping(path = "{id}")
-   @Operation(summary = "Update loyalty card partially by id")
-   public ResponseEntity<LoyaltyCard> patchLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCard loyaltyCarduyer) {
-      LoyaltyCard patchedLoyaltyCard = this.loyaltyCardService.patchLoyaltyCardById(id, loyaltyCarduyer);
-      return new ResponseEntity<>(patchedLoyaltyCard, HttpStatus.OK);
-   }
+//   @PatchMapping(path = "{id}")
+//   @Operation(summary = "Update loyalty card partially by id")
+//   public ResponseEntity<LoyaltyCard> patchLoyaltyCard(@PathVariable("id") long id, @Valid @RequestBody LoyaltyCard loyaltyCarduyer) {
+//      LoyaltyCard patchedLoyaltyCard = this.loyaltyCardService.patchLoyaltyCardById(id, loyaltyCarduyer);
+//      return new ResponseEntity<>(patchedLoyaltyCard, HttpStatus.OK);
+//   }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete loyalty card by id")

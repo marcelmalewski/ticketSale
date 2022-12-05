@@ -2,6 +2,7 @@ package com.marcel.malewski.ticketsale.front.controllers;
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCardService;
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
 import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,8 @@ public class LoyaltyCardDomainController {
 
    @RequestMapping("/home")
    public String getLoyaltyCardHome(Model model) {
-      List<LoyaltyCard> loyaltyCards = this.loyaltyCardService.getAllLoyaltyCards();
-      model.addAttribute("loyaltyCards", loyaltyCards);
+      List<LoyaltyCardResponseDto> loyaltyCardsResponseDto = this.loyaltyCardService.getAllLoyaltyCards();
+      model.addAttribute("loyaltyCardsResponseDto", loyaltyCardsResponseDto);
       return "loyaltyCard/loyaltyCardHome";
    }
 
