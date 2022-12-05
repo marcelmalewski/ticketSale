@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Positive;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -31,7 +32,7 @@ public class Seat {
    private Boolean isPremium;
    @ManyToMany(mappedBy = "seats")
    @ToString.Exclude
-   private Set<Ticket> tickets;
+   private List<Ticket> tickets;
    @ManyToOne
    @JoinColumn(name = "cinema_hall_id", nullable = false)
    //w zakresie jeden sali nie moze sie powtarzac seatNumber

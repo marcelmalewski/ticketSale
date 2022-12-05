@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.seat;
 
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
 import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,9 @@ public class SeatController {
 
    @GetMapping
    @Operation(summary = "Get all seats")
-   public ResponseEntity<List<Seat>> getAllSeats() {
-      List<Seat> seats = this.seatService.getAllSeats();
-      return new ResponseEntity<>(seats, HttpStatus.OK);
+   public ResponseEntity<List<SeatResponseDto>> getAllSeats() {
+      List<SeatResponseDto> seatsResponseDto = this.seatService.getAllSeats();
+      return new ResponseEntity<>(seatsResponseDto, HttpStatus.OK);
    }
 
    @GetMapping(path = "{id}")

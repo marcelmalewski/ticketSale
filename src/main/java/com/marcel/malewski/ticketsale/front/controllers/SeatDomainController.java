@@ -3,6 +3,7 @@ package com.marcel.malewski.ticketsale.front.controllers;
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.seat.SeatService;
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
 import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
@@ -26,8 +27,8 @@ public class SeatDomainController {
 
    @RequestMapping("/home")
    public String getSeatHome(Model model) {
-      List<Seat> seats = this.seatService.getAllSeats();
-      model.addAttribute("seats", seats);
+      List<SeatResponseDto> seatsResponseDto = this.seatService.getAllSeats();
+      model.addAttribute("seatsResponseDto", seatsResponseDto);
       return "seat/seatHome";
    }
 
