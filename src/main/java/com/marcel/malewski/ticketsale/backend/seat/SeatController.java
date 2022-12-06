@@ -26,33 +26,33 @@ public class SeatController {
       return new ResponseEntity<>(seatsResponseDto, HttpStatus.OK);
    }
 
-   @GetMapping(path = "{id}")
-   @Operation(summary = "Get seat by id")
-   public ResponseEntity<Seat> getSeatById(@PathVariable("id") long id) {
-      Seat seat = this.seatService.getSeatById(id);
-      return new ResponseEntity<>(seat, HttpStatus.OK);
-   }
+//   @GetMapping(path = "{id}")
+//   @Operation(summary = "Get seat by id")
+//   public ResponseEntity<Seat> getSeatById(@PathVariable("id") long id) {
+//      Seat seat = this.seatService.getSeatById(id);
+//      return new ResponseEntity<>(seat, HttpStatus.OK);
+//   }
 
    @PostMapping
    @Operation(summary = "Create new seat")
-   public ResponseEntity<Seat> postSeat(@Valid @RequestBody SeatWithValidationDto seatWithValidationDto) {
-      Seat createdSeat = this.seatService.postSeat(seatWithValidationDto);
-      return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
+   public ResponseEntity<String> postSeat(@Valid @RequestBody SeatWithValidationDto seatWithValidationDto) {
+      this.seatService.postSeat(seatWithValidationDto);
+      return new ResponseEntity<>("created", HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update seat by id")
-   public ResponseEntity<Seat> updateSeat(@PathVariable("id") long id, @Valid @RequestBody SeatWithValidationDto seat) {
-      Seat updatedSeat = this.seatService.putSeatById(id, seat);
-      return new ResponseEntity<>(updatedSeat, HttpStatus.OK);
+   public ResponseEntity<String> updateSeat(@PathVariable("id") long id, @Valid @RequestBody SeatWithValidationDto seat) {
+      this.seatService.putSeatById(id, seat);
+      return new ResponseEntity<>("updated", HttpStatus.OK);
    }
 
-   @PatchMapping(path = "{id}")
-   @Operation(summary = "Update seat partially by id")
-   public ResponseEntity<Seat> patchTicketBuyer(@PathVariable("id") long id, @Valid @RequestBody Seat seat) {
-      Seat patchedSeat = this.seatService.patchSeatById(id, seat);
-      return new ResponseEntity<>(patchedSeat, HttpStatus.OK);
-   }
+//   @PatchMapping(path = "{id}")
+//   @Operation(summary = "Update seat partially by id")
+//   public ResponseEntity<Seat> patchTicketBuyer(@PathVariable("id") long id, @Valid @RequestBody Seat seat) {
+//      Seat patchedSeat = this.seatService.patchSeatById(id, seat);
+//      return new ResponseEntity<>(patchedSeat, HttpStatus.OK);
+//   }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete seat by id")

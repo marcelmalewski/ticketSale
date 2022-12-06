@@ -17,6 +17,7 @@ import java.util.Set;
 @Table(name = "seat")
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Seat {
    @Id
    @SequenceGenerator(
@@ -39,18 +40,12 @@ public class Seat {
    //w zakresie jeden sali nie moze sie powtarzac seatNumber
    private CinemaHall cinemaHall;
 
-   public Seat(Long id, Integer seatNumber, Boolean isPremium, CinemaHall cinemaHall) {
-      this.id = id;
-      this.seatNumber = seatNumber;
-      this.isPremium = isPremium;
-      this.cinemaHall = cinemaHall;
-   }
-
    public static Seat from(SeatWithValidationDto seatWithValidationDto, CinemaHall cinemaHall) {
       return new Seat(
               seatWithValidationDto.getId(),
               seatWithValidationDto.getSeatNumber(),
               seatWithValidationDto.getIsPremium(),
+              null,
               cinemaHall
       );
    }

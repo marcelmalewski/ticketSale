@@ -58,8 +58,7 @@ public class SeatDomainController {
 
    @RequestMapping("/update/{id}")
    public String getSeatPut(@PathVariable(name = "id") long id, Model model) {
-      Seat seatToUpdate = this.seatService.getSeatById(id);
-      SeatWithValidationDto seatWithValidationDto = SeatWithValidationDto.from(seatToUpdate);
+      SeatWithValidationDto seatWithValidationDto = this.seatService.getSeatWithValidationDtoById(id);
       model.addAttribute("seatWithValidationDto", seatWithValidationDto);
       model.addAttribute("id", id);
       return "seat/seatUpdate";

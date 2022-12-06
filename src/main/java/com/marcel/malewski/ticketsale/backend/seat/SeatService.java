@@ -24,19 +24,25 @@ public class SeatService {
       return SeatResponseDto.seatsResponseDtoFrom(seats);
    }
 
-   public Seat getSeatById(Long id) {
-      return seatRepository.findById(id)
+   public SeatWithValidationDto getSeatWithValidationDtoById(Long id) {
+      Seat seat = seatRepository.findById(id)
               .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
+      return SeatWithValidationDto.from(seat);
    }
 
-   public Seat postSeat(SeatWithValidationDto seatWithValidationDto) {
+//   public Seat getSeatById(Long id) {
+//      return seatRepository.findById(id)
+//              .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
+//   }
+
+   public void postSeat(SeatWithValidationDto seatWithValidationDto) {
       CinemaHall cinemaHall = this.cinemaHallRepository.getReferenceById(seatWithValidationDto.getCinemaHallId());
       Seat seat = Seat.from(seatWithValidationDto, cinemaHall);
 
-      return seatRepository.save(seat);
+      seatRepository.save(seat);
    }
 
-   public Seat putSeatById(Long id, SeatWithValidationDto seatWithValidationDto) {
+   public void putSeatById(Long id, SeatWithValidationDto seatWithValidationDto) {
       Seat seatToUpdate = this.seatRepository.findById(id)
               .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
 
@@ -45,22 +51,22 @@ public class SeatService {
       seatToUpdate.setIsPremium(seatWithValidationDto.getIsPremium());
       seatToUpdate.setCinemaHall(cinemaHall);
 
-      return seatRepository.save(seatToUpdate);
+      seatRepository.save(seatToUpdate);
    }
 
-   public Seat patchSeatById(Long id, Seat seat) {
-      Seat currentSeat = seatRepository.findById(id)
-              .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
-
-      currentSeat.setSeatNumber(
-              (seat.getSeatNumber() != null) ? seat.getSeatNumber() : currentSeat.getSeatNumber()
-      );
-      currentSeat.setIsPremium(
-              (seat.getIsPremium() != null) ? seat.getIsPremium() : currentSeat.getIsPremium()
-      );
-
-      return seatRepository.save(currentSeat);
-   }
+//   public Seat patchSeatById(Long id, Seat seat) {
+//      Seat currentSeat = seatRepository.findById(id)
+//              .orElseThrow(() -> new SeatNotFoundException(String.format(SeatConstants.SEAT_BY_ID_NOT_FOUND_MESSAGE, id)));
+//
+//      currentSeat.setSeatNumber(
+//              (seat.getSeatNumber() != null) ? seat.getSeatNumber() : currentSeat.getSeatNumber()
+//      );
+//      currentSeat.setIsPremium(
+//              (seat.getIsPremium() != null) ? seat.getIsPremium() : currentSeat.getIsPremium()
+//      );
+//
+//      return seatRepository.save(currentSeat);
+//   }
 
    public void deleteSeatById(Long id) {
       if(!seatRepository.existsById(id))

@@ -14,6 +14,7 @@
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Seat number</th>
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Is Premium</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets ids</th>
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Cinema hall</th>
   </tr>
   </thead>
@@ -25,6 +26,7 @@
     <td class="align-middle" th:text="${seatResponseDto.id}"></td>
     <td class="align-middle" th:text="${seatResponseDto.seatNumber}"></td>
     <td class="align-middle" th:text="${seatResponseDto.isPremium}"></td>
+    <td class="align-middle" th:text="${seatResponseDto.ticketsIds}"></td>
     <td class="align-middle" th:text="${seatResponseDto.cinemaHall}"></td>
     <td>
       <a
