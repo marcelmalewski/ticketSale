@@ -25,12 +25,12 @@ public class CinemaHallController {
       return new ResponseEntity<>(cinemaHalls, HttpStatus.OK);
    }
 
-   @GetMapping(path = "{id}")
-   @Operation(summary = "Get cinema hall by id")
-   public ResponseEntity<CinemaHall> getCinemaHallById(@PathVariable("id") long id) {
-      CinemaHall cinemaHall = this.cinemaHallService.getCinemaHallById(id);
-      return new ResponseEntity<>(cinemaHall, HttpStatus.OK);
-   }
+//   @GetMapping(path = "{id}")
+//   @Operation(summary = "Get cinema hall by id")
+//   public ResponseEntity<CinemaHall> getCinemaHallById(@PathVariable("id") long id) {
+//      CinemaHall cinemaHall = this.cinemaHallService.getCinemaHallById(id);
+//      return new ResponseEntity<>(cinemaHall, HttpStatus.OK);
+//   }
 
    @PostMapping
    @Operation(summary = "Create new cinema hall")
@@ -46,12 +46,12 @@ public class CinemaHallController {
       return new ResponseEntity<>(updatedCinemaHall, HttpStatus.OK);
    }
 
-   @PatchMapping(path = "{id}")
-   @Operation(summary = "Update cinema hall partially by id")
-   public ResponseEntity<CinemaHall> patchCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHall cinemaHall) {
-      CinemaHall patchedCinemaHall = this.cinemaHallService.patchCinemaHallById(id, cinemaHall);
-      return new ResponseEntity<>(patchedCinemaHall, HttpStatus.OK);
-   }
+//   @PatchMapping(path = "{id}")
+//   @Operation(summary = "Update cinema hall partially by id")
+//   public ResponseEntity<CinemaHall> patchCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHall cinemaHall) {
+//      CinemaHall patchedCinemaHall = this.cinemaHallService.patchCinemaHallById(id, cinemaHall);
+//      return new ResponseEntity<>(patchedCinemaHall, HttpStatus.OK);
+//   }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete cinema hall by id")

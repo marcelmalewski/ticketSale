@@ -21,15 +21,15 @@ public class CinemaHallService {
       return CinemaHallResponseDto.cinemaHallsResponseDtoFrom(cinemaHalls);
    }
 
-   public CinemaHall getCinemaHallById(long id) {
-      return this.cinemaHallRepository.findById(id).orElseThrow(() -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
-   }
+//   public CinemaHall getCinemaHallById(long id) {
+//      return this.cinemaHallRepository.findById(id).orElseThrow(() -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
+//   }
 
-   public CinemaHall postCinemaHall(CinemaHall cinemaHall) {
+   public void postCinemaHall(CinemaHall cinemaHall) {
       return this.cinemaHallRepository.save(cinemaHall);
    }
 
-   public CinemaHall putCinemaHallById(long id, CinemaHall cinemaHall) {
+   public void putCinemaHallById(long id, CinemaHall cinemaHall) {
       if(!this.cinemaHallRepository.existsById(id))
          throw new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id));
 
@@ -37,16 +37,16 @@ public class CinemaHallService {
       return this.cinemaHallRepository.save(cinemaHall);
    }
 
-   public CinemaHall patchCinemaHallById(long id, CinemaHall cinemaHall) {
-      CinemaHall currentCinemaHall = this.cinemaHallRepository.findById(id)
-              .orElseThrow(() -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
-
-      currentCinemaHall.setHallNumber(
-              (cinemaHall.getHallNumber() != null) ? cinemaHall.getHallNumber() : currentCinemaHall.getHallNumber()
-      );
-
-      return this.cinemaHallRepository.save(currentCinemaHall);
-   }
+//   public CinvoidemaHall patchCinemaHallById(long id, CinemaHall cinemaHall) {
+//      CinemaHall currentCinemaHall = this.cinemaHallRepository.findById(id)
+//              .orElseThrow(() -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
+//
+//      currentCinemaHall.setHallNumber(
+//              (cinemaHall.getHallNumber() != null) ? cinemaHall.getHallNumber() : currentCinemaHall.getHallNumber()
+//      );
+//
+//      return this.cinemaHallRepository.save(currentCinemaHall);
+//   }
 
    public void deleteCinemaHallById(long id) {
       if(!this.cinemaHallRepository.existsById(id))
