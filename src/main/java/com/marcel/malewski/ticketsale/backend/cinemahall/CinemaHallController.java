@@ -1,6 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,16 +35,16 @@ public class CinemaHallController {
 
    @PostMapping
    @Operation(summary = "Create new cinema hall")
-   public ResponseEntity<CinemaHall> postCinemaHall(@Valid @RequestBody CinemaHall cinemaHall) {
-      CinemaHall createdCinemaHall = this.cinemaHallService.postCinemaHall(cinemaHall);
-      return new ResponseEntity<>(createdCinemaHall, HttpStatus.CREATED);
+   public ResponseEntity<String> postCinemaHall(@Valid @RequestBody CinemaHallWithValidationDto cinemaHallWithValidationDto) {
+      this.cinemaHallService.postCinemaHall(cinemaHallWithValidationDto);
+      return new ResponseEntity<>("created", HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update cinema hall by id")
-   public ResponseEntity<CinemaHall> updateCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHall cinemaHall) {
-      CinemaHall updatedCinemaHall = this.cinemaHallService.putCinemaHallById(id, cinemaHall);
-      return new ResponseEntity<>(updatedCinemaHall, HttpStatus.OK);
+   public ResponseEntity<String> updateCinemaHallById(@PathVariable("id") long id, @Valid @RequestBody CinemaHallWithValidationDto cinemaHallWithValidationDto) {
+      this.cinemaHallService.putCinemaHallById(id, cinemaHallWithValidationDto);
+      return new ResponseEntity<>("updated", HttpStatus.OK);
    }
 
 //   @PatchMapping(path = "{id}")

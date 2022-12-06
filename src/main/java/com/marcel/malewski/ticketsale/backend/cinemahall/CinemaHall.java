@@ -1,22 +1,19 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
-import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallWithValidationDto;
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @Entity
 @Table(name = "cinema_hall")
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class CinemaHall {
    @Id
    @SequenceGenerator(
@@ -29,12 +26,13 @@ public class CinemaHall {
            generator = "cinema_hall_sequence"
    )
    private Long id;
-   @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
-   @Positive(message = "Cinema hall number must be positive")
    private Integer hallNumber;
    @OneToMany(mappedBy = "cinemaHall")
-   @Size(max = 50, message = "Cinema hall cannot have more than 50 seats")
    @ToString.Exclude
    //czy jak powstaje miejsce i dodaje do siebie id cinema hall i bedzie to 51 to nie bedzie bledu?
    private List<Seat> seats;
+
+   static public CinemaHall from(CinemaHallWithValidationDto cinemaHallWithValidationDto) {
+      return new CinemaHall(cinemaHallWithValidationDto.getId(), cinemaHallWithValidationDto.getHallNumber(), null);
+   }
 }

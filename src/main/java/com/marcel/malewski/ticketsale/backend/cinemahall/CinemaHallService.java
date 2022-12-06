@@ -1,6 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.cinemahall;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallResponseDto;
+import com.marcel.malewski.ticketsale.backend.cinemahall.dto.CinemaHallWithValidationDto;
 import com.marcel.malewski.ticketsale.backend.cinemahall.exceptions.CinemaHallNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +26,18 @@ public class CinemaHallService {
 //      return this.cinemaHallRepository.findById(id).orElseThrow(() -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
 //   }
 
-   public void postCinemaHall(CinemaHall cinemaHall) {
-      return this.cinemaHallRepository.save(cinemaHall);
+   public void postCinemaHall(CinemaHallWithValidationDto cinemaHallWithValidationDto) {
+      CinemaHall cinemaHall = CinemaHall.from(cinemaHallWithValidationDto);
+      this.cinemaHallRepository.save(cinemaHall);
    }
 
-   public void putCinemaHallById(long id, CinemaHall cinemaHall) {
-      if(!this.cinemaHallRepository.existsById(id))
-         throw new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id));
+   public void putCinemaHallById(long id, CinemaHallWithValidationDto cinemaHallWithValidationDto) {
+      CinemaHall cinemaHallToUpdate = this.cinemaHallRepository.findById(id).orElseThrow(
+              () -> new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
 
-      cinemaHall.setId(id);
-      return this.cinemaHallRepository.save(cinemaHall);
+      cinemaHallToUpdate.setHallNumber(cinemaHallWithValidationDto.getHallNumber());
+
+      this.cinemaHallRepository.save(cinemaHallToUpdate);
    }
 
 //   public CinvoidemaHall patchCinemaHallById(long id, CinemaHall cinemaHall) {
@@ -49,7 +52,7 @@ public class CinemaHallService {
 //   }
 
    public void deleteCinemaHallById(long id) {
-      if(!this.cinemaHallRepository.existsById(id))
+      if (!this.cinemaHallRepository.existsById(id))
          throw new CinemaHallNotFoundException(String.format(CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id));
 
       this.cinemaHallRepository.deleteById(id);
