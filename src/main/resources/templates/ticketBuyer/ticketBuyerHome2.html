@@ -5,13 +5,13 @@
     <title>Ticket buyer home</title>
 </head>
 <body>
-<a href="/front/v1/ticket-buyers/add"
+<a href="/front/v1/loyalty-cards/add"
    style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 15px;"
->Add new ticket buyer</a>
+>Add new loyalty card</a>
 <table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
     <thead>
     <tr>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id </th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password</th>
@@ -24,7 +24,7 @@
     </thead>
     <tbody>
     <tr th:if="${ticketBuyersResponseDto.empty}">
-        <td colspan="2"> No ticket buyers Available</td>
+        <td colspan="2"> No Loyalty cards Available </td>
     </tr>
     <tr th:each="ticketBuyerResponseDto : ${ticketBuyersResponseDto}">
         <td class="align-middle" th:text="${ticketBuyerResponseDto.id}"></td>
@@ -38,11 +38,11 @@
         <td class="align-middle" th:text="${ticketBuyerResponseDto.ticketsIds}"></td>
         <td>
             <a
-                    th:href="@{/front/v1/ticket-buyers/update/{id}(id=${ticketBuyerResponseDto.id})}"
+                    th:href="@{/front/v1/loyalty-cards/update/{id}(id=${ticketBuyerResponseDto.id})}"
                     style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
             >Update</a>
             <a
-                    th:href="@{/front/v1/ticket-buyers/delete/{id}(id=${ticketBuyerResponseDto.id})}"
+                    th:href="@{/front/v1/loyalty-cards/delete/{id}(id=${ticketBuyerResponseDto.id})}"
                     style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
             >Delete</a>
         </td>

@@ -16,6 +16,7 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class TicketBuyer {
    @Id
    @SequenceGenerator(
@@ -41,25 +42,18 @@ public class TicketBuyer {
    @ToString.Exclude
    private List<Ticket> tickets;
 
-   public TicketBuyer(Long id, String firstName, String secondName, String password, Date dateOfBirth, String email, AgeRange ageRange) {
-      this.id = id;
-      this.firstName = firstName;
-      this.secondName = secondName;
-      this.password = password;
-      this.dateOfBirth = dateOfBirth;
-      this.email = email;
-      this.ageRange = ageRange;
-   }
-
-   public TicketBuyerWithValidationDto toTicketBuyerWithValidationDto() {
-      return new TicketBuyerWithValidationDto(
-              this.id,
-              this.firstName,
-              this.secondName,
-              this.password,
-              this.dateOfBirth,
-              this.email,
-              this.ageRange.getValue()
+   //ticket buyer dodaj po swojej stronie tylko loyalty card to jest do posta
+   static public TicketBuyer from(TicketBuyerWithValidationDto ticketBuyerWithValidationDto, LoyaltyCard loyaltyCard) {
+      return new TicketBuyer(
+              ticketBuyerWithValidationDto.getId(),
+              ticketBuyerWithValidationDto.getFirstName(),
+              ticketBuyerWithValidationDto.getSecondName(),
+              ticketBuyerWithValidationDto.getPassword(),
+              ticketBuyerWithValidationDto.getDateOfBirth(),
+              ticketBuyerWithValidationDto.getEmail(),
+              AgeRange.valueOf(ticketBuyerWithValidationDto.getAgeRange()),
+              loyaltyCard,
+              null
       );
    }
 }

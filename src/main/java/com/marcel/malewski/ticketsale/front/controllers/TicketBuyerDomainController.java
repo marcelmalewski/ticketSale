@@ -2,6 +2,7 @@ package com.marcel.malewski.ticketsale.front.controllers;
 
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyerService;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.dto.TicketBuyerResponseDto;
 import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +26,8 @@ public class TicketBuyerDomainController {
 
    @RequestMapping("/home")
    public String getTicketBuyerHome(Model model) {
-      List<TicketBuyer> ticketBuyers = this.ticketBuyerService.getAllTicketBuyers();
-      model.addAttribute("ticketBuyers", ticketBuyers);
+      List<TicketBuyerResponseDto> ticketBuyersResponseDto = this.ticketBuyerService.getAllTicketBuyers();
+      model.addAttribute("ticketBuyersResponseDto", ticketBuyersResponseDto);
       return "ticketBuyer/ticketBuyerHome";
    }
 
@@ -45,15 +46,13 @@ public class TicketBuyerDomainController {
       if(errors.hasErrors()){
          return "ticketBuyer/ticketBuyerAdd";
       }
-      TicketBuyer ticketBuyer = ticketBuyerWithValidationDto.toTicketBuyer();
-      this.ticketBuyerService.postTicketBuyer(ticketBuyer);
+      this.ticketBuyerService.postTicketBuyer(ticketBuyerWithValidationDto);
       return "redirect:/front/v1/ticket-buyers/home";
    }
 
    @RequestMapping("/update/{id}")
    public String getTicketBuyerPut(@PathVariable(name = "id") long id, Model model) {
-      TicketBuyer ticketBuyerToUpdate = this.ticketBuyerService.getTicketBuyerById(id);
-      TicketBuyerWithValidationDto ticketBuyerWithValidationDto = ticketBuyerToUpdate.toTicketBuyerWithValidationDto();
+      TicketBuyerWithValidationDto ticketBuyerWithValidationDto = this.ticketBuyerService.getTicketBuyerValidationById(id);
       model.addAttribute("ticketBuyerWithValidationDto", ticketBuyerWithValidationDto);
       return "ticketBuyer/ticketBuyerUpdate";
    }
@@ -66,8 +65,7 @@ public class TicketBuyerDomainController {
       if (errors.hasErrors()) {
          return "ticketBuyer/ticketBuyerUpdate";
       }
-      TicketBuyer ticketBuyer = ticketBuyerWithValidationDto.toTicketBuyer();
-      this.ticketBuyerService.putTicketBuyerById(ticketBuyer.getId(), ticketBuyer);
+      this.ticketBuyerService.putTicketBuyerById(ticketBuyerWithValidationDto.getId(), ticketBuyerWithValidationDto);
 
       return "redirect:/front/v1/ticket-buyers/home";
    }

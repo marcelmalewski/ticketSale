@@ -38,6 +38,8 @@ public class LoyaltyCard {
       this.discountOnTheNextTicket = discountOnTheNextTicket;
    }
 
+   //uzywane do posta
+   //TODO zobaczmy czy tu przy updacie musze podawac Ticekt buyera
    static public LoyaltyCard from(LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
       return new LoyaltyCard(
                loyaltyCardWithValidationDto.getId(),

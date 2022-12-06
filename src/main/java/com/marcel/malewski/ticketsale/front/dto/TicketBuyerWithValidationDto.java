@@ -33,16 +33,21 @@ public class TicketBuyerWithValidationDto {
    private String email;
    @EnumConstraint(regexp = "CHILD|ADULT|SENIOR", message = "Age range have to be one of: CHILD, ADULT, SENIOR")
    private String ageRange;
+   @NotNull
+   private Long loyaltyCardId;
 
-   public TicketBuyer toTicketBuyer() {
-      return new TicketBuyer(
-              this.id,
-              this.firstName,
-              this.secondName,
-              this.password,
-              this.dateOfBirth,
-              this.email,
-              AgeRange.valueOf(this.ageRange)
+   static public TicketBuyerWithValidationDto from(TicketBuyer ticketBuyer) {
+      Long loyaltyCardId = (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard().getId() : null;
+
+      return new TicketBuyerWithValidationDto(
+              ticketBuyer.getId(),
+              ticketBuyer.getFirstName(),
+              ticketBuyer.getSecondName(),
+              ticketBuyer.getPassword(),
+              ticketBuyer.getDateOfBirth(),
+              ticketBuyer.getEmail(),
+              ticketBuyer.getAgeRange().getValue(),
+              loyaltyCardId
       );
    }
 }

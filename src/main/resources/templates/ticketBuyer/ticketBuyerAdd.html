@@ -63,12 +63,22 @@
     <br>
     <br>
 
-    <label for="ageRange">ageRange:</label>
+    <label for="ageRange">age range:</label>
     <input type="text" th:field="*{ageRange}"/>
     <br>
     <span class="validationError"
           th:if="${#fields.hasErrors('ageRange')}"
           th:errors="*{ageRange}">
+    </span>
+    <br>
+    <br>
+
+    <label for="loyaltyCardId">loyalty card id:</label>
+    <input type="number" th:field="*{loyaltyCardId}"/>
+    <br>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('loyaltyCardId')}"
+          th:errors="*{loyaltyCardId}">
     </span>
     <br>
     <br>
