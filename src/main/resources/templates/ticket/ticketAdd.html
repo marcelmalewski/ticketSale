@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Ticket</title>
+</head>
+<body>
+<form method="POST" th:action="@{/front/v1/tickets/add/validate}" th:object="${ticketWithValidation}">
+  <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+       <h2>Form errors.</h2>
+      </span>
+  </div>
+  <br>
+
+  <label for="movieName">movie name:</label>
+  <input type="text" th:field="*{movieName}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('movieName')}"
+        th:errors="*{movieName}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="showDate">show date:</label>
+  <input type="date" th:field="*{showDate}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('showDate')}"
+        th:errors="*{showDate}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="hallNumber">hall number:</label>
+  <input type="number" th:field="*{hallNumber}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('hallNumber')}"
+        th:errors="*{hallNumber}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="ticketBuyersIds">ticket buyers ids: (example: "1 2 3 7")</label>
+  <input type="text" th:field="*{ticketBuyersIds}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('ticketBuyersIds')}"
+        th:errors="*{ticketBuyersIds}">Error
+    </span>
+  <br>
+  <br>
+
+  <label for="seatsIds">seats ids: (example: "1 2 3 7")</label>
+  <input type="text" th:field="*{seatsIds}"/>
+  <br>
+  <span class="validationError"
+        th:if="${#fields.hasErrors('seatsIds')}"
+        th:errors="*{seatsIds}">Error
+    </span>
+  <br>
+  <br>
+
+  <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

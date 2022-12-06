@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   <tr th:if="${seatsResponseDto.empty}">
-    <td colspan="2"> No ticket buyers Available</td>
+    <td colspan="2"> No seats Available</td>
   </tr>
   <tr th:each="seatResponseDto : ${seatsResponseDto}">
     <td class="align-middle" th:text="${seatResponseDto.id}"></td>

@@ -2,9 +2,8 @@ package com.marcel.malewski.ticketsale.backend.ticket;
 
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
@@ -18,6 +17,8 @@ import java.util.List;
 @Entity
 @Table(name = "ticket")
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ticket {
    @Id
    @SequenceGenerator(
@@ -31,10 +32,8 @@ public class Ticket {
    )
    private Long id;
    private String movieName;
-   @Future(message = "Date must be in the future")
    private Date showDate;
-   @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
-   @Positive(message = "Cinema hall number must be positive")
+   //TODO to moglaby by być relacja z obiektem CinemaHall ale nie ma co komplikowac
    private Integer hallNumber;
    @ManyToMany
    @JoinTable(name = "ticket_ticket_buyer",
@@ -51,4 +50,15 @@ public class Ticket {
    )
    @ToString.Exclude
    private List<Seat> seats;
+
+   static public Ticket from(TicketWithValidation ticketWithValidation, List<TicketBuyer> ticketBuyers, List<Seat> seats) {
+      return new Ticket(
+              ticketWithValidation.getId(),
+              ticketWithValidation.getMovieName(),
+              ticketWithValidation.getShowDate(),
+              ticketWithValidation.getHallNumber(),
+              ticketBuyers,
+              seats
+      );
+   }
 }

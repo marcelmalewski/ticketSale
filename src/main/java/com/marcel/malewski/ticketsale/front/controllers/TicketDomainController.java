@@ -2,10 +2,14 @@ package com.marcel.malewski.ticketsale.front.controllers;
 
 import com.marcel.malewski.ticketsale.backend.ticket.TicketService;
 import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
+import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -21,6 +25,25 @@ public class TicketDomainController {
    public String getTicketHome(Model model) {
       List<TicketResponseDto> ticketsResponseDto = this.ticketService.getAllTickets();
       model.addAttribute("ticketsResponseDto", ticketsResponseDto);
-      return "loyaltyCard/loyaltyCardHome";
+      return "ticket/ticketHome";
+   }
+
+   @RequestMapping("/add")
+   public String getTicketAdd(Model model) {
+      TicketWithValidation ticketWithValidation = new TicketWithValidation();
+      model.addAttribute("ticketWithValidation", ticketWithValidation);
+      return "ticket/ticketAdd";
+   }
+
+   @PostMapping("/add/validate")
+   public String processTicketPost(
+           @Valid TicketWithValidation ticketWithValidation,
+           Errors errors, Model model){
+      model.addAttribute("ticketWithValidation", ticketWithValidation);
+      if(errors.hasErrors()){
+         return "ticket/ticketAdd";
+      }
+      this.ticketService.postTicket(ticketWithValidation);
+      return "redirect:/front/v1/tickets/home";
    }
 }

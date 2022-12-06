@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket home</title>
+</head>
+<body>
+<a href="/front/v1/tickets/add"
+   style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 15px;"
+>Add new ticket</a>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Movie name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Show date</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Hall number</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyers ids</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Seats ids</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${ticketsResponseDto.empty}">
+        <td colspan="2"> No tickets Available</td>
+    </tr>
+    <tr th:each="ticketResponseDto : ${ticketsResponseDto}">
+        <td class="align-middle" th:text="${ticketResponseDto.id}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.movieName}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.showDate}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.hallNumber}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.ticketBuyersIds}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.seatsIds}"></td>
+        <td>
+            <a
+                    th:href="@{/front/v1/tickets/update/{id}(id=${ticketResponseDto.id})}"
+                    style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+            >Update</a>
+            <a
+                    th:href="@{/front/v1/tickets/delete/{id}(id=${ticketResponseDto.id})}"
+                    style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+            >Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

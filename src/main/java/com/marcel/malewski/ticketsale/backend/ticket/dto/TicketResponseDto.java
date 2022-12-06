@@ -16,8 +16,8 @@ public class TicketResponseDto {
    private String movieName;
    private Date showDate;
    private Integer hallNumber;
-   private List<Long> ticketBuyers;
-   private List<Long> seats;
+   private List<Long> ticketBuyersIds;
+   private List<Long> seatsIds;
 
    static public List<TicketResponseDto> ticketsResponseDtoFrom(List<Ticket> tickets) {
       return tickets.stream()

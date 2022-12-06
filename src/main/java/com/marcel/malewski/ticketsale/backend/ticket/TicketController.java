@@ -1,6 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.ticket;
 
 import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
+import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,33 +26,33 @@ public class TicketController {
       return new ResponseEntity<>(tickets, HttpStatus.OK);
    }
 
-   @GetMapping(path = "{id}")
-   @Operation(summary = "Get ticket buyer by id")
-   public ResponseEntity<Ticket> getTicketById(@PathVariable("id") long id) {
-      Ticket ticket = this.ticketService.getTicketById(id);
-      return new ResponseEntity<>(ticket, HttpStatus.OK);
-   }
+//   @GetMapping(path = "{id}")
+//   @Operation(summary = "Get ticket buyer by id")
+//   public ResponseEntity<Ticket> getTicketById(@PathVariable("id") long id) {
+//      Ticket ticket = this.ticketService.getTicketById(id);
+//      return new ResponseEntity<>(ticket, HttpStatus.OK);
+//   }
 
    @PostMapping
    @Operation(summary = "Create new ticket")
-   public ResponseEntity<Ticket> postTicket(@Valid @RequestBody Ticket ticket) {
-      Ticket createdTicket = this.ticketService.postTicket(ticket);
-      return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
+   public ResponseEntity<String> postTicket(@Valid @RequestBody TicketWithValidation ticketWithValidation) {
+      this.ticketService.postTicket(ticketWithValidation);
+      return new ResponseEntity<>("crated", HttpStatus.CREATED);
    }
 
    @PutMapping(path = "{id}")
    @Operation(summary = "Update ticket by id")
-   public ResponseEntity<Ticket> updateTicket(@PathVariable("id") long id, @Valid @RequestBody Ticket ticket) {
-      Ticket updatedTicket = this.ticketService.putTicketById(id, ticket);
-      return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
+   public ResponseEntity<String> updateTicket(@PathVariable("id") long id, @Valid @RequestBody TicketWithValidation ticketWithValidation) {
+      this.ticketService.putTicketById(id, ticketWithValidation);
+      return new ResponseEntity<>("updated", HttpStatus.OK);
    }
 
-   @PatchMapping(path = "{id}")
-   @Operation(summary = "Update ticket partially by id")
-   public ResponseEntity<Ticket> patchTicket(@PathVariable("id") long id, @Valid @RequestBody Ticket ticket) {
-      Ticket patchedTicket = this.ticketService.patchTicketById(id, ticket);
-      return new ResponseEntity<>(patchedTicket, HttpStatus.OK);
-   }
+//   @PatchMapping(path = "{id}")
+//   @Operation(summary = "Update ticket partially by id")
+//   public ResponseEntity<Ticket> patchTicket(@PathVariable("id") long id, @Valid @RequestBody Ticket ticket) {
+//      Ticket patchedTicket = this.ticketService.patchTicketById(id, ticket);
+//      return new ResponseEntity<>(patchedTicket, HttpStatus.OK);
+//   }
 
    @DeleteMapping(path = "{id}")
    @Operation(summary = "Delete ticket by id")
