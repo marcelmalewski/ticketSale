@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.ticket;
 
+import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class TicketController {
 
    @GetMapping
    @Operation(summary = "Get all tickets")
-   public ResponseEntity<List<Ticket>> getAllTickets() {
-      List<Ticket> tickets = this.ticketService.getAllTickets();
+   public ResponseEntity<List<TicketResponseDto>> getAllTickets() {
+      List<TicketResponseDto> tickets = this.ticketService.getAllTickets();
       return new ResponseEntity<>(tickets, HttpStatus.OK);
    }
 

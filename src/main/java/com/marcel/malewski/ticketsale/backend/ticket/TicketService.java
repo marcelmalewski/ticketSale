@@ -1,5 +1,6 @@
 package com.marcel.malewski.ticketsale.backend.ticket;
 
+import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
 import com.marcel.malewski.ticketsale.backend.ticket.exceptions.TicketNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,9 @@ public class TicketService {
       this.ticketRepository = ticketRepository;
    }
 
-   public List<Ticket> getAllTickets() {
-      return this.ticketRepository.findAll();
+   public List<TicketResponseDto> getAllTickets() {
+      List<Ticket> tickets = ticketRepository.findAll();
+      return TicketResponseDto.ticketsResponseDtoFrom(tickets);
    }
 
    public Ticket getTicketById(long id) {

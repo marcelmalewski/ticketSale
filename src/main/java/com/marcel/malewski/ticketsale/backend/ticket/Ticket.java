@@ -10,7 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Positive;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -32,7 +32,7 @@ public class Ticket {
    private Long id;
    private String movieName;
    @Future(message = "Date must be in the future")
-   private ZonedDateTime showDate;
+   private Date showDate;
    @Max(value = 20, message = "There are only 20 cinema halls in the cinema")
    @Positive(message = "Cinema hall number must be positive")
    private Integer hallNumber;
