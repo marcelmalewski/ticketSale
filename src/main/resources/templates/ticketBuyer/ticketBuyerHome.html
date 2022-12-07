@@ -13,12 +13,8 @@
     <tr>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name</th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password</th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Date of birth</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Loyalty card id</th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets movie names</th>
     </tr>
     </thead>
     <tbody>
@@ -28,13 +24,13 @@
     <tr th:each="ticketBuyerResponseDto : ${ticketBuyersResponseDto}">
         <td class="align-middle" th:text="${ticketBuyerResponseDto.firstName}"></td>
         <td class="align-middle" th:text="${ticketBuyerResponseDto.secondName}"></td>
-        <td class="align-middle" th:text="${ticketBuyerResponseDto.password}"></td>
-        <td class="align-middle" th:text="${ticketBuyerResponseDto.dateOfBirth}"></td>
         <td class="align-middle" th:text="${ticketBuyerResponseDto.email}"></td>
         <td class="align-middle" th:text="${ticketBuyerResponseDto.ageRange}"></td>
-        <td class="align-middle" th:text="${ticketBuyerResponseDto.loyaltyCardId}"></td>
-        <td class="align-middle" th:text="${ticketBuyerResponseDto.ticketsMovieNames}"></td>
         <td>
+            <a
+                    th:href="@{/front/v1/ticket-buyers/details/{id}(id=${ticketBuyerResponseDto.id})}"
+                    style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+            >Details</a>
             <a
                     th:href="@{/front/v1/ticket-buyers/update/{id}(id=${ticketBuyerResponseDto.id})}"
                     style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"

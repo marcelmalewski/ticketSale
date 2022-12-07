@@ -33,6 +33,12 @@ public class TicketBuyerService {
       return TicketBuyerWithValidationDto.from(ticketBuyer);
    }
 
+   public TicketBuyerResponseDto getTicketBuyerResponseDtoById(long id) {
+      TicketBuyer ticketBuyer = this.ticketBuyerRepository.findById(id).orElseThrow(
+              () -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
+      return TicketBuyerResponseDto.from(ticketBuyer);
+   }
+
 //   public TicketBuyer getTicketBuyerById(long id) {
 //      return this.ticketBuyerRepository.findById(id).orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
 //   }

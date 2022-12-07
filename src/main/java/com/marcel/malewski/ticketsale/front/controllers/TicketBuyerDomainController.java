@@ -20,6 +20,13 @@ public class TicketBuyerDomainController {
       this.ticketBuyerService = ticketBuyerService;
    }
 
+   @RequestMapping("/details/{id}")
+   public String getTicketBuyerDetails(Model model, @PathVariable(name = "id") long id) {
+      TicketBuyerResponseDto ticketBuyerResponseDto = this.ticketBuyerService.getTicketBuyerResponseDtoById(id);
+      model.addAttribute("ticketBuyerResponseDto", ticketBuyerResponseDto);
+      return "ticketBuyer/ticketBuyerDetails";
+   }
+
    @RequestMapping("/home")
    public String getTicketBuyerHome(Model model) {
       List<TicketBuyerResponseDto> ticketBuyersResponseDto = this.ticketBuyerService.getAllTicketBuyers();

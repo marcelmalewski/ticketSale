@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket buyer details</title>
+</head>
+<body>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Password</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Date of birth</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Loyalty card id</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets movie names</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.firstName}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.secondName}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.password}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.dateOfBirth}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.email}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.ageRange}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.loyaltyCardId}"></td>
+        <td class="align-middle" th:text="${ticketBuyerResponseDto.ticketsMovieNames}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
