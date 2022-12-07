@@ -16,7 +16,7 @@ public class TicketResponseDto {
    private String movieName;
    private Date showDate;
    private Integer hallNumber;
-   private List<Long> ticketBuyersIds;
+   private String ticketBuyerName;
    private List<Long> seatsIds;
 
    static public List<TicketResponseDto> ticketsResponseDtoFrom(List<Ticket> tickets) {
@@ -31,15 +31,9 @@ public class TicketResponseDto {
               ticket.getMovieName(),
               ticket.getShowDate(),
               ticket.getHallNumber(),
-              ticketBuyersIdsFromTicketBuyers(ticket.getTicketBuyers()),
+              ticket.getTicketBuyer().getFirstName() + " " + ticket.getTicketBuyer().getSecondName(),
               seatsIdsFromSeats(ticket.getSeats())
       );
-   }
-
-   static private List<Long> ticketBuyersIdsFromTicketBuyers(List<TicketBuyer> ticketBuyers) {
-      return ticketBuyers.stream()
-              .map(TicketBuyer::getId)
-              .toList();
    }
 
    static private List<Long> seatsIdsFromSeats(List<Seat> seats) {

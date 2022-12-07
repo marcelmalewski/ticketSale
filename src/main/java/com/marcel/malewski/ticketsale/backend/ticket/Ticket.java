@@ -35,14 +35,11 @@ public class Ticket {
    private Date showDate;
    //TODO to moglaby by być relacja z obiektem CinemaHall ale nie ma co komplikowac
    private Integer hallNumber;
-   @ManyToMany
-   @JoinTable(name = "ticket_ticket_buyer",
-           joinColumns = { @JoinColumn(name = "ticket_id", referencedColumnName = "id")},
-           inverseJoinColumns = { @JoinColumn(name = "ticket_buyer_id", referencedColumnName = "id")}
-   )
+   @ManyToOne
+   @JoinColumn(name = "ticket_buyer_id", nullable = false)
    @ToString.Exclude
    //sprawdzenie z liczbą osób jest taka sama jak liczba miejsc
-   private List<TicketBuyer> ticketBuyers;
+   private TicketBuyer ticketBuyer;
    @ManyToMany
    @JoinTable(name = "ticket_seat",
            joinColumns = { @JoinColumn(name = "ticket_id", referencedColumnName = "id")},
@@ -51,13 +48,13 @@ public class Ticket {
    @ToString.Exclude
    private List<Seat> seats;
 
-   static public Ticket from(TicketWithValidation ticketWithValidation, List<TicketBuyer> ticketBuyers, List<Seat> seats) {
+   static public Ticket from(TicketWithValidation ticketWithValidation, TicketBuyer ticketBuyer, List<Seat> seats) {
       return new Ticket(
               ticketWithValidation.getId(),
               ticketWithValidation.getMovieName(),
               ticketWithValidation.getShowDate(),
               ticketWithValidation.getHallNumber(),
-              ticketBuyers,
+              ticketBuyer,
               seats
       );
    }

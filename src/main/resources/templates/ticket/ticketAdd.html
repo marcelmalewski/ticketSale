@@ -43,12 +43,12 @@
   <br>
   <br>
 
-  <label for="ticketBuyersIds">ticket buyers ids: (example: "1 2 3 7")</label>
-  <input type="text" th:field="*{ticketBuyersIds}"/>
+  <label for="ticketBuyerId">ticket buyer id:</label>
+  <input type="number" th:field="*{ticketBuyerId}"/>
   <br>
   <span class="validationError"
-        th:if="${#fields.hasErrors('ticketBuyersIds')}"
-        th:errors="*{ticketBuyersIds}">Error
+        th:if="${#fields.hasErrors('ticketBuyerId')}"
+        th:errors="*{ticketBuyerId}">Error
     </span>
   <br>
   <br>

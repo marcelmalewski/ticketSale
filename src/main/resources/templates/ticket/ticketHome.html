@@ -15,7 +15,7 @@
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Movie name</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Show date</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Hall number</th>
-        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyers ids</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer</th>
         <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Seats ids</th>
     </tr>
     </thead>
@@ -28,7 +28,7 @@
         <td class="align-middle" th:text="${ticketResponseDto.movieName}"></td>
         <td class="align-middle" th:text="${ticketResponseDto.showDate}"></td>
         <td class="align-middle" th:text="${ticketResponseDto.hallNumber}"></td>
-        <td class="align-middle" th:text="${ticketResponseDto.ticketBuyersIds}"></td>
+        <td class="align-middle" th:text="${ticketResponseDto.ticketBuyerName}"></td>
         <td class="align-middle" th:text="${ticketResponseDto.seatsIds}"></td>
         <td>
             <a

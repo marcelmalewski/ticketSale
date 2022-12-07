@@ -44,18 +44,15 @@ public class TicketService {
 //   }
 
    public void postTicket(TicketWithValidation ticketWithValidation) {
-      List<TicketBuyer> ticketBuyers = this.mapIdsToTicketBuyers(ticketWithValidation.getTicketBuyersIds());
+      TicketBuyer ticketBuyer = this.mapIdToTicketBuyer(ticketWithValidation.getTicketBuyerId());
       List<Seat> seats = this.mapIdsToSeats(ticketWithValidation.getSeatsIds());
 
-      Ticket ticket = Ticket.from(ticketWithValidation, ticketBuyers, seats);
+      Ticket ticket = Ticket.from(ticketWithValidation, ticketBuyer, seats);
       this.ticketRepository.save(ticket);
    }
 
-   private List<TicketBuyer> mapIdsToTicketBuyers(String ticketBuyersIds) {
-      List<String> ticketBuyersIdsAsList = Arrays.stream(ticketBuyersIds.split(" ")).toList();
-      return ticketBuyersIdsAsList.stream()
-              .map(ticketBuyerId -> this.ticketBuyerRepository.getReferenceById(Long.parseLong(ticketBuyerId)))
-              .collect(Collectors.toList());
+   private TicketBuyer mapIdToTicketBuyer(Long ticketBuyerId) {
+      return this.ticketBuyerRepository.getReferenceById(ticketBuyerId);
    }
 
    private List<Seat> mapIdsToSeats(String seatsIds) {
@@ -69,12 +66,12 @@ public class TicketService {
       Ticket ticket = this.ticketRepository.findById(id).orElseThrow(
               () -> new TicketNotFoundException(String.format(TICKET_BY_ID_NOT_FOUND_MESSAGE, id)));
 
-      List<TicketBuyer> ticketBuyers = this.mapIdsToTicketBuyers(ticketWithValidation.getTicketBuyersIds());
+      TicketBuyer ticketBuyer = this.mapIdToTicketBuyer(ticketWithValidation.getTicketBuyerId());
       List<Seat> seats = this.mapIdsToSeats(ticketWithValidation.getSeatsIds());
       ticket.setMovieName(ticketWithValidation.getMovieName());
       ticket.setShowDate(ticketWithValidation.getShowDate());
       ticket.setHallNumber(ticketWithValidation.getHallNumber());
-      ticket.setTicketBuyers(ticketBuyers);
+      ticket.setTicketBuyer(ticketBuyer);
       ticket.setSeats(seats);
 
       this.ticketRepository.save(ticket);

@@ -38,7 +38,7 @@ public class TicketBuyer {
    @OneToOne
    @JoinColumn(name = "loyalty_card_id", referencedColumnName = "id")
    private LoyaltyCard loyaltyCard;
-   @ManyToMany(mappedBy = "ticketBuyers")
+   @OneToMany(mappedBy = "ticketBuyer")
    @ToString.Exclude
    private List<Ticket> tickets;
 

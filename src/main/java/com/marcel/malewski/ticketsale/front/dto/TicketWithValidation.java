@@ -29,8 +29,8 @@ public class TicketWithValidation {
    @NotNull(message = "Cinema hall number must be provided")
    private Integer hallNumber;
    //sprawdzenie z liczbą osób jest taka sama jak liczba miejsc
-   @NotBlank(message = "Ticket buyers ids must be provided")
-   private String ticketBuyersIds;
+   @NotNull(message = "Ticket buyer id must be provided")
+   private Long ticketBuyerId;
    @NotBlank(message = "Seats ids must be provided")
    private String seatsIds;
 
@@ -40,15 +40,13 @@ public class TicketWithValidation {
               ticket.getMovieName(),
               ticket.getShowDate(),
               ticket.getHallNumber(),
-              getTicketBuyersIds(ticket.getTicketBuyers()),
+              getTicketBuyerId(ticket.getTicketBuyer()),
               getSeatsIds(ticket.getSeats())
       );
    }
 
-   static private String getTicketBuyersIds(List<TicketBuyer> ticketBuyers) {
-      return ticketBuyers.stream()
-              .map(ticketBuyer -> ticketBuyer.getId().toString())
-              .collect(Collectors.joining(" "));
+   static private Long getTicketBuyerId(TicketBuyer ticketBuyer) {
+      return ticketBuyer.getId();
    }
 
    static private String getSeatsIds(List<Seat> seats) {
