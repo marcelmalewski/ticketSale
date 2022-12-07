@@ -3,7 +3,7 @@ package com.marcel.malewski.ticketsale.backend.ticketbuyer;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
-import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.dto.TicketBuyerWithValidationDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -45,7 +45,7 @@ public class TicketBuyer {
    //ticket buyer dodaj po swojej stronie tylko loyalty card to jest do posta
    static public TicketBuyer from(TicketBuyerWithValidationDto ticketBuyerWithValidationDto, LoyaltyCard loyaltyCard) {
       return new TicketBuyer(
-              ticketBuyerWithValidationDto.getId(),
+              null,
               ticketBuyerWithValidationDto.getFirstName(),
               ticketBuyerWithValidationDto.getSecondName(),
               ticketBuyerWithValidationDto.getPassword(),

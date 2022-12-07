@@ -20,7 +20,7 @@ public class TicketBuyerResponseDto {
    private String email;
    private String ageRange;
    private Long loyaltyCardId;
-   private List<Long> ticketsIds;
+   private List<String> ticketsMovieNames;
 
    static public List<TicketBuyerResponseDto> ticketBuyersResponseDtoFrom(List<TicketBuyer> ticketBuyers) {
       return ticketBuyers.stream()
@@ -32,9 +32,9 @@ public class TicketBuyerResponseDto {
       //LoyaltyCard moze nie byc
       //Tickets moze nie byc
       Long loyaltyCardId = (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard().getId() : null;
-      List<Long> ticketsIds = (ticketBuyer.getTickets().isEmpty()) ?
-              Collections.<Long>emptyList() :
-              getTicketsIdsFromTickets(ticketBuyer.getTickets());
+      List<String> ticketsMovieNames = (ticketBuyer.getTickets().isEmpty()) ?
+              Collections.<String>emptyList() :
+              getTicketsMovieNamesFromTickets(ticketBuyer.getTickets());
 
       return new TicketBuyerResponseDto(
               ticketBuyer.getId(),
@@ -45,13 +45,13 @@ public class TicketBuyerResponseDto {
               ticketBuyer.getEmail(),
               ticketBuyer.getAgeRange().getValue(),
               loyaltyCardId,
-              ticketsIds
+              ticketsMovieNames
       );
    }
 
-   static private List<Long> getTicketsIdsFromTickets(List<Ticket> tickets) {
+   static private List<String> getTicketsMovieNamesFromTickets(List<Ticket> tickets) {
       return tickets.stream()
-              .map(Ticket::getId)
+              .map(Ticket::getMovieName)
               .toList();
    }
 }

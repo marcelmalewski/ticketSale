@@ -2,14 +2,11 @@ package com.marcel.malewski.ticketsale.backend.seat;
 
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
 import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
-import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatWithValidationDto;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Positive;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -42,7 +39,7 @@ public class Seat {
 
    public static Seat from(SeatWithValidationDto seatWithValidationDto, CinemaHall cinemaHall) {
       return new Seat(
-              seatWithValidationDto.getId(),
+              null,
               seatWithValidationDto.getSeatNumber(),
               seatWithValidationDto.getIsPremium(),
               null,

@@ -6,7 +6,7 @@ import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
 import com.marcel.malewski.ticketsale.backend.ticket.exceptions.TicketNotFoundException;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyerRepository;
-import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
+import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketWithValidation;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

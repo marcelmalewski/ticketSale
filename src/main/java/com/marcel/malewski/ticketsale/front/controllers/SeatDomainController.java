@@ -1,21 +1,12 @@
 package com.marcel.malewski.ticketsale.front.controllers;
 
-import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
-import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
-import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.seat.SeatService;
 import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
-import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
-import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
-import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
-import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -64,22 +55,23 @@ public class SeatDomainController {
       return "seat/seatUpdate";
    }
 
-   @PostMapping("/update/validate")
+   @PutMapping("/update/validate/{id}")
    public String processSeatPut(
+           @PathVariable(name = "id") long id,
            @Valid SeatWithValidationDto seatWithValidationDto,
            Errors errors, Model model) {
       model.addAttribute("seatWithValidationDto", seatWithValidationDto);
-      model.addAttribute("id", seatWithValidationDto.getId());
+      model.addAttribute("id", id);
 
       if (errors.hasErrors()) {
          return "seat/seatUpdate";
       }
-      this.seatService.putSeatById(seatWithValidationDto.getId(), seatWithValidationDto);
+      this.seatService.putSeatById(id, seatWithValidationDto);
 
       return "redirect:/front/v1/seats/home";
    }
 
-   @GetMapping("/delete/{id}")
+   @DeleteMapping("/delete/{id}")
    public String processSeatDelete(@PathVariable(name = "id") long id) {
       this.seatService.deleteSeatById(id);
       return "redirect:/front/v1/seats/home";

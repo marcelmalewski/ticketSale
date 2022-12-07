@@ -1,7 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.seat;
 
 import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
-import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

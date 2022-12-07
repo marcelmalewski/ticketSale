@@ -11,11 +11,10 @@
 <table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
   <thead>
   <tr>
-    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id</th>
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Seat number</th>
     <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Is Premium</th>
-    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets ids</th>
-    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Cinema hall</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Tickets movie names</th>
+    <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Cinema hall number</th>
   </tr>
   </thead>
   <tbody>
@@ -23,20 +22,24 @@
     <td colspan="2"> No seats Available</td>
   </tr>
   <tr th:each="seatResponseDto : ${seatsResponseDto}">
-    <td class="align-middle" th:text="${seatResponseDto.id}"></td>
     <td class="align-middle" th:text="${seatResponseDto.seatNumber}"></td>
     <td class="align-middle" th:text="${seatResponseDto.isPremium}"></td>
-    <td class="align-middle" th:text="${seatResponseDto.ticketsIds}"></td>
-    <td class="align-middle" th:text="${seatResponseDto.cinemaHall}"></td>
+    <td class="align-middle" th:text="${seatResponseDto.ticketsMovieNames}"></td>
+    <td class="align-middle" th:text="${seatResponseDto.cinemaHallNumber}"></td>
     <td>
       <a
               th:href="@{/front/v1/seats/update/{id}(id=${seatResponseDto.id})}"
               style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
       >Update</a>
-      <a
-              th:href="@{/front/v1/seats/delete/{id}(id=${seatResponseDto.id})}"
-              style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
-      >Delete</a>
+      <form
+              th:method="delete"
+              th:action="@{/front/v1/seats/delete/{id}(id=${seatResponseDto.id})}"
+              style="display: inline-block; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+      >
+        <button
+                style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+        >Delete</button>
+      </form>
     </td>
   </tr>
   </tbody>

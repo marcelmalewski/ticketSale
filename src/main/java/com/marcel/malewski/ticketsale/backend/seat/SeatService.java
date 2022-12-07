@@ -4,7 +4,7 @@ import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHall;
 import com.marcel.malewski.ticketsale.backend.cinemahall.CinemaHallRepository;
 import com.marcel.malewski.ticketsale.backend.seat.dto.SeatResponseDto;
 import com.marcel.malewski.ticketsale.backend.seat.exceptions.SeatNotFoundException;
-import com.marcel.malewski.ticketsale.front.dto.SeatWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.seat.dto.SeatWithValidationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

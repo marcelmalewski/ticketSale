@@ -14,8 +14,8 @@ public class SeatResponseDto {
    private Long id;
    private Integer seatNumber;
    private Boolean isPremium;
-   private List<Long> ticketsIds;
-   private CinemaHall cinemaHall;
+   private List<String> ticketsMovieNames;
+   private Integer cinemaHallNumber;
 
    static public List<SeatResponseDto> seatsResponseDtoFrom(List<Seat> seats) {
       return seats.stream()
@@ -28,14 +28,18 @@ public class SeatResponseDto {
                  seat.getId(),
                  seat.getSeatNumber(),
                  seat.getIsPremium(),
-                 ticketsIdsFromTickets(seat.getTickets()),
-                 seat.getCinemaHall()
+                 ticketsMovieNamesFromTickets(seat.getTickets()),
+                 cinemaHallNumberFromCinemaHall(seat.getCinemaHall())
          );
    }
 
-   static private List<Long> ticketsIdsFromTickets(List<Ticket> tickets) {
+   static private List<String> ticketsMovieNamesFromTickets(List<Ticket> tickets) {
       return tickets.stream()
-              .map(Ticket::getId)
+              .map(Ticket::getMovieName)
               .toList();
+   }
+
+   static private Integer cinemaHallNumberFromCinemaHall(CinemaHall cinemaHall) {
+      return (cinemaHall != null) ? cinemaHall.getHallNumber() : null;
    }
 }

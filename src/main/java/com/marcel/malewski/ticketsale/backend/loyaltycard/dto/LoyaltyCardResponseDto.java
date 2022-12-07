@@ -14,7 +14,7 @@ public class LoyaltyCardResponseDto {
    private BigDecimal moneySpent;
    private Long numberOfWatchedMovies;
    private Integer discountOnTheNextTicket;
-   private Long ticketBuyerId;
+   private String ticketBuyerName;
 
    static public List<LoyaltyCardResponseDto> loyaltyCardsResponsDtoFrom(List<LoyaltyCard> loyaltyCards) {
       return loyaltyCards.stream()
@@ -23,9 +23,9 @@ public class LoyaltyCardResponseDto {
    }
 
    static public LoyaltyCardResponseDto from(LoyaltyCard loyaltyCard) {
-      Long ticketBuyerId = (loyaltyCard.getTicketBuyer() != null) ? loyaltyCard.getTicketBuyer().getId() : null;
+      String ticketBuyerName = (loyaltyCard.getTicketBuyer() != null) ? loyaltyCard.getTicketBuyer().getFirstName() : null;
 
       //Ticket buyera moze nie byc
-      return new LoyaltyCardResponseDto(loyaltyCard.getId(), loyaltyCard.getMoneySpent(), loyaltyCard.getNumberOfWatchedMovies(), loyaltyCard.getDiscountOnTheNextTicket(), ticketBuyerId);
+      return new LoyaltyCardResponseDto(loyaltyCard.getId(), loyaltyCard.getMoneySpent(), loyaltyCard.getNumberOfWatchedMovies(), loyaltyCard.getDiscountOnTheNextTicket(), ticketBuyerName);
    }
 }

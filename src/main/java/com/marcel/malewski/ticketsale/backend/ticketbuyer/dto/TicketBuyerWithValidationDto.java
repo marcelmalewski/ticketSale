@@ -1,7 +1,6 @@
-package com.marcel.malewski.ticketsale.front.dto;
+package com.marcel.malewski.ticketsale.backend.ticketbuyer.dto;
 
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
-import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.front.constraint.EnumConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +15,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketBuyerWithValidationDto {
-   private Long id;
    @NotBlank(message = "First name is mandatory")
    private String firstName;
    @NotBlank(message = "Second name is mandatory")
@@ -40,7 +38,6 @@ public class TicketBuyerWithValidationDto {
       Long loyaltyCardId = (ticketBuyer.getLoyaltyCard() != null) ? ticketBuyer.getLoyaltyCard().getId() : null;
 
       return new TicketBuyerWithValidationDto(
-              ticketBuyer.getId(),
               ticketBuyer.getFirstName(),
               ticketBuyer.getSecondName(),
               ticketBuyer.getPassword(),

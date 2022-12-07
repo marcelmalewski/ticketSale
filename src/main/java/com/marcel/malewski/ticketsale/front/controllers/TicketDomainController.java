@@ -2,7 +2,7 @@ package com.marcel.malewski.ticketsale.front.controllers;
 
 import com.marcel.malewski.ticketsale.backend.ticket.TicketService;
 import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketResponseDto;
-import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
+import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketWithValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -61,6 +61,8 @@ public class TicketDomainController {
            @Valid TicketWithValidation ticketWithValidation,
            Errors errors, Model model) {
       model.addAttribute("ticketWithValidation", ticketWithValidation);
+      //model.addAttribute("id", id);
+
       if (errors.hasErrors()) {
          return "ticket/ticketUpdate";
       }
@@ -72,6 +74,6 @@ public class TicketDomainController {
    @GetMapping("/delete/{id}")
    public String processTicketDelete(@PathVariable(name = "id") long id) {
       this.ticketService.deleteTicketById(id);
-      return "redirect:/front/v1/loyalty-cards/home";
+      return "redirect:/front/v1/tickets/home";
    }
 }

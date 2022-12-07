@@ -1,4 +1,4 @@
-package com.marcel.malewski.ticketsale.front.dto;
+package com.marcel.malewski.ticketsale.backend.seat.dto;
 
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,6 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SeatWithValidationDto {
-   private Long id;
    @Max(value = 50, message = "Seat number must be less than 50")
    @Positive(message = "Seat number must be positive")
    @NotNull(message = "Seat number is mandatory")
@@ -26,6 +25,6 @@ public class SeatWithValidationDto {
    private Long cinemaHallId;
 
    static public SeatWithValidationDto from(Seat seat) {
-      return new SeatWithValidationDto(seat.getId(), seat.getSeatNumber(), seat.getIsPremium(), seat.getCinemaHall().getId());
+      return new SeatWithValidationDto(seat.getSeatNumber(), seat.getIsPremium(), seat.getCinemaHall().getId());
    }
 }

@@ -1,9 +1,8 @@
 package com.marcel.malewski.ticketsale.front.controllers;
 
-import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCardService;
 import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
-import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardWithValidationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -60,6 +59,8 @@ public class LoyaltyCardDomainController {
            @Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto,
            Errors errors, Model model) {
       model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
+      model.addAttribute("id", id);
+
       if (errors.hasErrors()) {
          return "loyaltyCard/loyaltyCardUpdate";
       }

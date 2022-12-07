@@ -2,13 +2,10 @@ package com.marcel.malewski.ticketsale.backend.ticket;
 
 import com.marcel.malewski.ticketsale.backend.seat.Seat;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
-import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
+import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketWithValidation;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.List;
 

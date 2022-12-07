@@ -5,17 +5,12 @@
     <title>Ticket buyer update</title>
 </head>
 <body>
-<form method="POST" th:action="@{/front/v1/ticket-buyers/update/validate}" th:object="${ticketBuyerWithValidationDto}">
+<form th:method="put" th:action="@{/front/v1/ticket-buyers/update/validate/{id}(id=${id})}" th:object="${ticketBuyerWithValidationDto}">
     <div th:if="${#fields.hasErrors()}">
       <span class="validationError">
        <h2>Form errors.</h2>
       </span>
     </div>
-    <br>
-
-    <label for="id">Id:</label>
-    <input type="text" id="id" name="id" th:field="*{id}" readonly="readonly"/>
-    <br>
     <br>
 
     <label for="firstName">first name:</label>

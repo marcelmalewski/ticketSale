@@ -5,17 +5,12 @@
     <title>Seat update</title>
 </head>
 <body>
-<form method="POST" th:action="@{/front/v1/seats/update/validate}" th:object="${seatWithValidationDto}">
+<form th:method="put" th:action="@{/front/v1/seats/update/validate/{id}(id=${id})}" th:object="${seatWithValidationDto}">
   <div th:if="${#fields.hasErrors()}">
       <span class="validationError">
        <h2>Form errors.</h2>
       </span>
   </div>
-  <br>
-
-  <label for="id">Id:</label>
-  <input type="text" id="id" name="id" th:field="*{id}" readonly="readonly"/>
-  <br>
   <br>
 
   <label for="seatNumber">seat number:</label>

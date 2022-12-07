@@ -1,7 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
-import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardWithValidationDto;
 import lombok.*;
 
 import javax.persistence.*;

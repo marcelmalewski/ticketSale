@@ -1,4 +1,4 @@
-package com.marcel.malewski.ticketsale.front.dto;
+package com.marcel.malewski.ticketsale.backend.loyaltycard.dto;
 
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCard;

@@ -1,7 +1,7 @@
 package com.marcel.malewski.ticketsale.backend.loyaltycard;
 
 import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardResponseDto;
-import com.marcel.malewski.ticketsale.front.dto.LoyaltyCardWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.loyaltycard.dto.LoyaltyCardWithValidationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -5,7 +5,7 @@ import com.marcel.malewski.ticketsale.backend.loyaltycard.LoyaltyCardRepository;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.dto.TicketBuyerResponseDto;
 import com.marcel.malewski.ticketsale.backend.ticketbuyer.exceptions.TicketBuyerNotFoundException;
-import com.marcel.malewski.ticketsale.front.dto.TicketBuyerWithValidationDto;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

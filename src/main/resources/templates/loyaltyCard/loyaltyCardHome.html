@@ -11,11 +11,10 @@
     <table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
         <thead>
         <tr>
-            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Id </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Money spent </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Number of watched movies </th>
             <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Discount on the next ticket </th>
-            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer id </th>
+            <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Ticket buyer name </th>
         </tr>
         </thead>
         <tbody>
@@ -23,11 +22,10 @@
             <td colspan="2"> No Loyalty cards Available </td>
         </tr>
         <tr th:each="loyaltyCardResponseDto : ${loyaltyCardsResponseDto}">
-            <td class="align-middle" th:text="${loyaltyCardResponseDto.id}"></td>
             <td class="align-middle" th:text="${loyaltyCardResponseDto.moneySpent}"></td>
             <td class="align-middle" th:text="${loyaltyCardResponseDto.numberOfWatchedMovies}"></td>
             <td class="align-middle" th:text="${loyaltyCardResponseDto.discountOnTheNextTicket}"></td>
-            <td class="align-middle" th:text="${loyaltyCardResponseDto.TicketBuyerId}"></td>
+            <td class="align-middle" th:text="${loyaltyCardResponseDto.TicketBuyerName}"></td>
             <td>
                 <a
                         th:href="@{/front/v1/loyalty-cards/update/{id}(id=${loyaltyCardResponseDto.id})}"
