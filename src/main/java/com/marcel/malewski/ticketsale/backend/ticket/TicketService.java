@@ -33,6 +33,12 @@ public class TicketService {
       return TicketResponseDto.ticketsResponseDtoFrom(tickets);
    }
 
+   public TicketWithValidation getTicketWithValidationById(long id) {
+      Ticket ticket = ticketRepository.findById(id).orElseThrow(
+              () -> new TicketNotFoundException(TICKET_BY_ID_NOT_FOUND_MESSAGE + id));
+      return TicketWithValidation.from(ticket);
+   }
+
 //   public Ticket getTicketById(long id) {
 //      return this.ticketRepository.findById(id).orElseThrow(() -> new TicketNotFoundException(String.format(TICKET_BY_ID_NOT_FOUND_MESSAGE, id)));
 //   }

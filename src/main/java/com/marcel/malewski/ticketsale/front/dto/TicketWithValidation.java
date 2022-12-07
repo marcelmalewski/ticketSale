@@ -1,12 +1,21 @@
 package com.marcel.malewski.ticketsale.front.dto;
 
+import com.marcel.malewski.ticketsale.backend.seat.Seat;
+import com.marcel.malewski.ticketsale.backend.ticket.Ticket;
+import com.marcel.malewski.ticketsale.backend.ticketbuyer.TicketBuyer;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TicketWithValidation {
    private Long id;
    @NotBlank
@@ -24,4 +33,27 @@ public class TicketWithValidation {
    private String ticketBuyersIds;
    @NotBlank(message = "Seats ids must be provided")
    private String seatsIds;
+
+   static public TicketWithValidation from(Ticket ticket) {
+      return new TicketWithValidation(
+              ticket.getId(),
+              ticket.getMovieName(),
+              ticket.getShowDate(),
+              ticket.getHallNumber(),
+              getTicketBuyersIds(ticket.getTicketBuyers()),
+              getSeatsIds(ticket.getSeats())
+      );
+   }
+
+   static private String getTicketBuyersIds(List<TicketBuyer> ticketBuyers) {
+      return ticketBuyers.stream()
+              .map(ticketBuyer -> ticketBuyer.getId().toString())
+              .collect(Collectors.joining(" "));
+   }
+
+   static private String getSeatsIds(List<Seat> seats) {
+      return seats.stream()
+              .map(seat -> seat.getId().toString())
+              .collect(Collectors.joining(" "));
+   }
 }

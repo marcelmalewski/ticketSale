@@ -6,6 +6,7 @@ import com.marcel.malewski.ticketsale.front.dto.TicketWithValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -45,5 +46,25 @@ public class TicketDomainController {
       }
       this.ticketService.postTicket(ticketWithValidation);
       return "redirect:/front/v1/tickets/home";
+   }
+
+   @RequestMapping("/update/{id}")
+   public String getTicketPut(@PathVariable(name = "id") long id, Model model) {
+      TicketWithValidation ticketWithValidation = this.ticketService.getTicketWithValidationById(id);
+      model.addAttribute("ticketWithValidation", ticketWithValidation);
+      return "ticket/ticketUpdate";
+   }
+
+   @PostMapping("/update/validate")
+   public String processLoyaltyCardPut(
+           @Valid TicketWithValidation ticketWithValidation,
+           Errors errors, Model model) {
+      model.addAttribute("ticketWithValidation", ticketWithValidation);
+      if (errors.hasErrors()) {
+         return "ticket/ticketUpdate";
+      }
+      this.ticketService.putTicketById(ticketWithValidation.getId(), ticketWithValidation);
+
+      return "redirect:/front/v1/ticket-buyers/home";
    }
 }
