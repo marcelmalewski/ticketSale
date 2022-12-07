@@ -54,20 +54,21 @@ public class LoyaltyCardDomainController {
       return "loyaltyCard/loyaltyCardUpdate";
    }
 
-   @PostMapping("/update/validate")
+   @PutMapping("/update/validate/{id}")
    public String processLoyaltyCardPut(
+           @PathVariable(name = "id") long id,
            @Valid LoyaltyCardWithValidationDto loyaltyCardWithValidationDto,
            Errors errors, Model model) {
       model.addAttribute("loyaltyCardWithValidationDto", loyaltyCardWithValidationDto);
       if (errors.hasErrors()) {
          return "loyaltyCard/loyaltyCardUpdate";
       }
-      this.loyaltyCardService.putLoyaltyCardById(loyaltyCardWithValidationDto.getId(), loyaltyCardWithValidationDto);
+      this.loyaltyCardService.putLoyaltyCardById(id, loyaltyCardWithValidationDto);
 
       return "redirect:/front/v1/loyalty-cards/home";
    }
 
-   @GetMapping("/delete/{id}")
+   @DeleteMapping("/delete/{id}")
    public String processLoyaltyCardDelete(@PathVariable(name = "id") long id) {
       this.loyaltyCardService.deleteLoyaltyCardById(id);
       return "redirect:/front/v1/loyalty-cards/home";

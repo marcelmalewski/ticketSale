@@ -33,10 +33,15 @@
                         th:href="@{/front/v1/loyalty-cards/update/{id}(id=${loyaltyCardResponseDto.id})}"
                         style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
                 >Update</a>
-                <a
-                        th:href="@{/front/v1/loyalty-cards/delete/{id}(id=${loyaltyCardResponseDto.id})}"
-                        style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
-                >Delete</a>
+                <form
+                        th:method="delete"
+                        th:action="@{/front/v1/loyalty-cards/delete/{id}(id=${loyaltyCardResponseDto.id})}"
+                        style="display: inline-block; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+                >
+                    <button
+                            style="text-decoration: none; color: black; border: 2px solid black; padding: 5px; border-radius: 5px;margin-bottom: 5px;"
+                    >Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>

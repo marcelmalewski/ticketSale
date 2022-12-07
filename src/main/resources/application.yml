@@ -12,6 +12,11 @@ spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
 springdoc:
   swagger-ui:
     path: /api/swagger

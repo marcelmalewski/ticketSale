@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoyaltyCardWithValidationDto {
-   private Long id;
    @Min(value = 0, message = "Money spent must be greater than or equal to 0")
    @NotNull(message = "Money spent is mandatory")
    private BigDecimal moneySpent;
@@ -29,7 +28,6 @@ public class LoyaltyCardWithValidationDto {
 
    public static LoyaltyCardWithValidationDto from(LoyaltyCard loyaltyCard) {
          return new LoyaltyCardWithValidationDto(
-                   loyaltyCard.getId(),
                    loyaltyCard.getMoneySpent(),
                    loyaltyCard.getNumberOfWatchedMovies(),
                    loyaltyCard.getDiscountOnTheNextTicket()

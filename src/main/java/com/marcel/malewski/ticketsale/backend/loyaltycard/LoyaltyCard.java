@@ -42,7 +42,7 @@ public class LoyaltyCard {
    //TODO zobaczmy czy tu przy updacie musze podawac Ticekt buyera
    static public LoyaltyCard from(LoyaltyCardWithValidationDto loyaltyCardWithValidationDto) {
       return new LoyaltyCard(
-               loyaltyCardWithValidationDto.getId(),
+              null,
                loyaltyCardWithValidationDto.getMoneySpent(),
                loyaltyCardWithValidationDto.getNumberOfWatchedMovies(),
                loyaltyCardWithValidationDto.getDiscountOnTheNextTicket()
