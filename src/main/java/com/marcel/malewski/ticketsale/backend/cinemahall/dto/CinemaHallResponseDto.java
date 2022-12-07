@@ -13,6 +13,8 @@ public class CinemaHallResponseDto {
    private Long id;
    private Integer hallNumber;
    private List<Long> seatsIds;
+   private Integer screenWidthInMeters;
+   private Integer screenHeightInMeters;
 
    static public List<CinemaHallResponseDto> cinemaHallsResponseDtoFrom(List<CinemaHall> cinemaHalls) {
       return cinemaHalls.stream()
@@ -24,6 +26,12 @@ public class CinemaHallResponseDto {
       List<Long> seatsIds = cinemaHall.getSeats().stream()
               .map(Seat::getId)
               .toList();
-      return new CinemaHallResponseDto(cinemaHall.getId(), cinemaHall.getHallNumber(), seatsIds);
+      return new CinemaHallResponseDto(
+              cinemaHall.getId(),
+              cinemaHall.getHallNumber(),
+              seatsIds,
+              cinemaHall.getScreenWidthInMeters(),
+              cinemaHall.getScreenHeightInMeters()
+      );
    }
 }

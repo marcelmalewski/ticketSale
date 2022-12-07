@@ -27,12 +27,20 @@ public class CinemaHall {
    )
    private Long id;
    private Integer hallNumber;
+   private Integer screenWidthInMeters;
+   private Integer screenHeightInMeters;
    @OneToMany(mappedBy = "cinemaHall")
    @ToString.Exclude
    //czy jak powstaje miejsce i dodaje do siebie id cinema hall i bedzie to 51 to nie bedzie bledu?
    private List<Seat> seats;
 
    static public CinemaHall from(CinemaHallWithValidationDto cinemaHallWithValidationDto) {
-      return new CinemaHall(cinemaHallWithValidationDto.getId(), cinemaHallWithValidationDto.getHallNumber(), null);
+      return new CinemaHall(
+              cinemaHallWithValidationDto.getId(),
+              cinemaHallWithValidationDto.getHallNumber(),
+              cinemaHallWithValidationDto.getScreenWidthInMeters(),
+              cinemaHallWithValidationDto.getScreenHeightInMeters(),
+              null
+      );
    }
 }
