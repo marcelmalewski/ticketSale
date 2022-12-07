@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketWithValidation {
-   private Long id;
    @NotBlank
    private String movieName;
    @Future(message = "Date must be in the future")
@@ -36,7 +35,6 @@ public class TicketWithValidation {
 
    static public TicketWithValidation from(Ticket ticket) {
       return new TicketWithValidation(
-              ticket.getId(),
               ticket.getMovieName(),
               ticket.getShowDate(),
               ticket.getHallNumber(),

@@ -17,7 +17,7 @@ public class TicketResponseDto {
    private Date showDate;
    private Integer hallNumber;
    private String ticketBuyerName;
-   private List<Long> seatsIds;
+   private List<Integer> seatsNumbers;
 
    static public List<TicketResponseDto> ticketsResponseDtoFrom(List<Ticket> tickets) {
       return tickets.stream()
@@ -32,13 +32,13 @@ public class TicketResponseDto {
               ticket.getShowDate(),
               ticket.getHallNumber(),
               ticket.getTicketBuyer().getFirstName() + " " + ticket.getTicketBuyer().getSecondName(),
-              seatsIdsFromSeats(ticket.getSeats())
+              seatsNumberFromSeats(ticket.getSeats())
       );
    }
 
-   static private List<Long> seatsIdsFromSeats(List<Seat> seats) {
+   static private List<Integer> seatsNumberFromSeats(List<Seat> seats) {
       return seats.stream()
-              .map(Seat::getId)
+              .map(Seat::getSeatNumber)
               .toList();
    }
 }

@@ -6,10 +6,7 @@ import com.marcel.malewski.ticketsale.backend.ticket.dto.TicketWithValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -56,22 +53,23 @@ public class TicketDomainController {
       return "ticket/ticketUpdate";
    }
 
-   @PostMapping("/update/validate")
+   @PutMapping("/update/validate/{id}")
    public String processTicketPut(
+           @PathVariable(name = "id") long id,
            @Valid TicketWithValidation ticketWithValidation,
            Errors errors, Model model) {
       model.addAttribute("ticketWithValidation", ticketWithValidation);
-      //model.addAttribute("id", id);
+      model.addAttribute("id", id);
 
       if (errors.hasErrors()) {
          return "ticket/ticketUpdate";
       }
-      this.ticketService.putTicketById(ticketWithValidation.getId(), ticketWithValidation);
+      this.ticketService.putTicketById(id, ticketWithValidation);
 
-      return "redirect:/front/v1/ticket-buyers/home";
+      return "redirect:/front/v1/tickets/home";
    }
 
-   @GetMapping("/delete/{id}")
+   @DeleteMapping("/delete/{id}")
    public String processTicketDelete(@PathVariable(name = "id") long id) {
       this.ticketService.deleteTicketById(id);
       return "redirect:/front/v1/tickets/home";

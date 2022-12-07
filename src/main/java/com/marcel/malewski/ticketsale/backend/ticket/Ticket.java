@@ -47,7 +47,7 @@ public class Ticket {
 
    static public Ticket from(TicketWithValidation ticketWithValidation, TicketBuyer ticketBuyer, List<Seat> seats) {
       return new Ticket(
-              ticketWithValidation.getId(),
+              null,
               ticketWithValidation.getMovieName(),
               ticketWithValidation.getShowDate(),
               ticketWithValidation.getHallNumber(),
