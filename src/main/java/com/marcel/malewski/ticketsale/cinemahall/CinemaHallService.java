@@ -34,6 +34,9 @@ public class CinemaHallService {
               () -> new CinemaHallNotFoundException(String.format(CinemaHallConstants.CINEMA_HALL_BY_ID_NOT_FOUND_MESSAGE, id)));
 
       cinemaHallToUpdate.setHallNumber(cinemaHallWithValidationDto.getHallNumber());
+      cinemaHallToUpdate.setScreenWidthInMeters(cinemaHallWithValidationDto.getScreenWidthInMeters());
+      cinemaHallToUpdate.setScreenHeightInMeters(cinemaHallWithValidationDto.getScreenHeightInMeters());
+      cinemaHallToUpdate.setDescription(cinemaHallWithValidationDto.getDescription());
 
       this.cinemaHallRepository.save(cinemaHallToUpdate);
    }

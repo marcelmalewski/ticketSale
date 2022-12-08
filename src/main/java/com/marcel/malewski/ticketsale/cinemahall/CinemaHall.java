@@ -29,6 +29,7 @@ public class CinemaHall {
    private Integer hallNumber;
    private Integer screenWidthInMeters;
    private Integer screenHeightInMeters;
+   private String description;
    @OneToMany(mappedBy = "cinemaHall")
    @ToString.Exclude
    //czy jak powstaje miejsce i dodaje do siebie id cinema hall i bedzie to 51 to nie bedzie bledu?
@@ -40,6 +41,7 @@ public class CinemaHall {
               cinemaHallWithValidationDto.getHallNumber(),
               cinemaHallWithValidationDto.getScreenWidthInMeters(),
               cinemaHallWithValidationDto.getScreenHeightInMeters(),
+              cinemaHallWithValidationDto.getDescription(),
               null
       );
    }

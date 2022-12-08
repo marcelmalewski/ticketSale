@@ -9,9 +9,9 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EnumConstraint {
-   String regexp();
+   Class<? extends Enum<?>> enumClass();
 
-   String message() default "Invalid value";
+   String message() default "must be any of enum {enumClass}";
 
    Class<?>[] groups() default {};
 

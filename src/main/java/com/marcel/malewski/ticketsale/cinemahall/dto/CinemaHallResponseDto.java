@@ -15,6 +15,7 @@ public class CinemaHallResponseDto {
    private List<Long> seatsIds;
    private Integer screenWidthInMeters;
    private Integer screenHeightInMeters;
+   private String description;
 
    static public List<CinemaHallResponseDto> cinemaHallsResponseDtoFrom(List<CinemaHall> cinemaHalls) {
       return cinemaHalls.stream()
@@ -31,7 +32,8 @@ public class CinemaHallResponseDto {
               cinemaHall.getHallNumber(),
               seatsIds,
               cinemaHall.getScreenWidthInMeters(),
-              cinemaHall.getScreenHeightInMeters()
+              cinemaHall.getScreenHeightInMeters(),
+              cinemaHall.getDescription()
       );
    }
 }

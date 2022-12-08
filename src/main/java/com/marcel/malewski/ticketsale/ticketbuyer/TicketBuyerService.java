@@ -62,6 +62,7 @@ public class TicketBuyerService {
       ticketBuyer.setSecondName(ticketBuyerWithValidationDto.getSecondName());
       ticketBuyer.setPassword(ticketBuyerWithValidationDto.getPassword());
       ticketBuyer.setDateOfBirth(ticketBuyerWithValidationDto.getDateOfBirth());
+      ticketBuyer.setEmail(ticketBuyerWithValidationDto.getEmail());
       ticketBuyer.setAgeRange(AgeRange.valueOf(ticketBuyerWithValidationDto.getAgeRange()));
       ticketBuyer.setLoyaltyCard(loyaltyCard);
 

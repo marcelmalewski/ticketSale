@@ -2,6 +2,7 @@ package com.marcel.malewski.ticketsale.ticketbuyer.dto;
 
 import com.marcel.malewski.ticketsale.ticketbuyer.TicketBuyer;
 import com.marcel.malewski.ticketsale.constraint.EnumConstraint;
+import com.marcel.malewski.ticketsale.ticketbuyer.agerange.AgeRange;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,10 @@ public class TicketBuyerWithValidationDto {
    @NotBlank(message = "Second name is mandatory")
    private String secondName;
    @NotBlank(message = "Password is mandatory")
-   @Length(min = 4, message = "Password must be at least 4 characters long")
+   @Pattern(
+           regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$",
+           message = "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character, min 8, max 20 characters"
+   )
    private String password;
    @PastOrPresent(message = "Date of birth must be in the past or present")
    @NotNull(message = "Date of birth is mandatory")
@@ -29,7 +33,7 @@ public class TicketBuyerWithValidationDto {
    @Email(message = "Email should be valid email address")
    @NotBlank(message = "Email is mandatory")
    private String email;
-   @EnumConstraint(regexp = "CHILD|ADULT|SENIOR", message = "Age range have to be one of: CHILD, ADULT, SENIOR")
+   @EnumConstraint(enumClass = AgeRange.class, message = "Age range have to be one of: CHILD, ADULT, SENIOR")
    private String ageRange;
    @NotNull
    private Long loyaltyCardId;
