@@ -10,4 +10,9 @@ public class HomeDomainController {
    public String getHome() {
       return "home";
    }
+
+   @RequestMapping("/jpql")
+   public String getJpql() {
+      return "advancedJPQL";
+   }
 }
