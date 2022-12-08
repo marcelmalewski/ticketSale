@@ -34,7 +34,7 @@
     <br>
 
     <label for="password">password:</label>
-    <input type="text" th:field="*{password}"/>
+    <input type="password" th:field="*{password}"/>
     <br>
     <span class="validationError"
           th:if="${#fields.hasErrors('password')}"
