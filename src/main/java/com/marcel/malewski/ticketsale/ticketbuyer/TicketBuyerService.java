@@ -4,6 +4,7 @@ import com.marcel.malewski.ticketsale.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.loyaltycard.LoyaltyCardRepository;
 import com.marcel.malewski.ticketsale.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerResponseDto;
+import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerWithMovies;
 import com.marcel.malewski.ticketsale.ticketbuyer.exceptions.TicketBuyerNotFoundException;
 import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerWithValidationDto;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class TicketBuyerService {
       TicketBuyer ticketBuyer = this.ticketBuyerRepository.findById(id).orElseThrow(
               () -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
       return TicketBuyerResponseDto.from(ticketBuyer);
+   }
+
+   public TicketBuyer getTicketBuyerMoviesById(Long id, String movieName) {
+      return this.ticketBuyerRepository.findTicketBuyerMovies(id, movieName).orElseThrow();
    }
 
 //   public TicketBuyer getTicketBuyerById(long id) {
