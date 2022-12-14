@@ -71,4 +71,9 @@ public class LoyaltyCardService {
 
       this.loyaltyCardRepository.deleteById(id);
    }
+
+   //jqpl
+   public Float getAverageSpentMoney() {
+      return this.loyaltyCardRepository.getAverageSpentMoney();
+   }
 }

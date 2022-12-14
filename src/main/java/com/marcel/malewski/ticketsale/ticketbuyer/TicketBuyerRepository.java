@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,4 +19,7 @@ public interface TicketBuyerRepository extends JpaRepository<TicketBuyer, Long> 
            " INNER JOIN tb.tickets tickets ON tickets.id = 1" +
            " WHERE tb.id = ?1")
    Optional<TicketBuyer> findTicketBuyerMovies(Long id, String movieName);
+
+   @Query("SELECT tb FROM TicketBuyer tb ORDER BY tb.firstName ASC")
+   List<TicketBuyer> findTicketBuyersWithNameOrder();
 }

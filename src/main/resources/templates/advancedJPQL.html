@@ -5,6 +5,7 @@
     <title>advanced JPQL</title>
 </head>
 <body>
+<h2>Ticket buyers ordered alphabetical by name</h2>
 <table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
     <thead>
     <tr>
@@ -15,10 +16,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${ticketBuyers.empty}">
+    <tr th:if="${ticketByersOrdered.empty}">
         <td colspan="2"> No ticket buyers Available</td>
     </tr>
-    <tr th:each="ticketBuyer : ${ticketBuyers}">
+    <tr th:each="ticketBuyer : ${ticketByersOrdered}">
         <td class="align-middle" th:text="${ticketBuyer.firstName}"></td>
         <td class="align-middle" th:text="${ticketBuyer.secondName}"></td>
         <td class="align-middle" th:text="${ticketBuyer.email}"></td>
@@ -26,6 +27,11 @@
     </tr>
     </tbody>
 </table>
+<h2>Srednie wydatki ticket buyerow:</h2>
+<p th:text="${averageSpentMoney}"></p>
+<br>
+<br>
+<br>
 <h2>Wszystkie filmy na ktorych byl dany ticket buyer:</h2>
 </body>
 </html>

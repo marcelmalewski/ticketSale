@@ -40,10 +40,6 @@ public class TicketBuyerService {
       return TicketBuyerResponseDto.from(ticketBuyer);
    }
 
-   public TicketBuyer getTicketBuyerMoviesById(Long id, String movieName) {
-      return this.ticketBuyerRepository.findTicketBuyerMovies(id, movieName).orElseThrow();
-   }
-
 //   public TicketBuyer getTicketBuyerById(long id) {
 //      return this.ticketBuyerRepository.findById(id).orElseThrow(() -> new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id)));
 //   }
@@ -108,5 +104,15 @@ public class TicketBuyerService {
          throw new TicketBuyerNotFoundException(String.format(TICKET_BUYER_BY_ID_NOT_FOUND_MESSAGE, id));
 
       this.ticketBuyerRepository.deleteById(id);
+   }
+
+   //jpql
+   public TicketBuyer getTicketBuyerMoviesById(Long id, String movieName) {
+      return this.ticketBuyerRepository.findTicketBuyerMovies(id, movieName).orElseThrow();
+   }
+
+   public List<TicketBuyerResponseDto> ticketBuyersOrderedByName() {
+      List<TicketBuyer> ticketBuyers = this.ticketBuyerRepository.findTicketBuyersWithNameOrder();
+      return TicketBuyerResponseDto.ticketBuyersResponseDtoFrom(ticketBuyers);
    }
 }
