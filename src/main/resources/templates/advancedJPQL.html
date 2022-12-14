@@ -32,6 +32,73 @@
 <br>
 <br>
 <br>
-<h2>Wszystkie filmy na ktorych byl dany ticket buyer:</h2>
+<h2>Ilosc biletow na dany zakres wiekowy:</h2>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> number of tickets</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${ticketBuyerMovies.empty}">
+        <td colspan="2"> No ticket buyers Available</td>
+    </tr>
+    <tr th:each="ticketBuyerMovie : ${ticketBuyerMovies}">
+        <td class="align-middle" th:text="${ticketBuyerMovie.getAgeRange}"></td>
+        <td class="align-middle" th:text="${ticketBuyerMovie.getNumberOfTickets}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h2>Ilosc ticket buyerow na dany age range:</h2>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> number of ticket buyers</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${numberOfTicketBuyersByAgeRanges.empty}">
+        <td colspan="2"> No ticket buyers Available</td>
+    </tr>
+    <tr th:each="numberOfTicketBuyers : ${numberOfTicketBuyersByAgeRanges}">
+        <td class="align-middle" th:text="${numberOfTicketBuyers.getAgeRange}"></td>
+        <td class="align-middle" th:text="${numberOfTicketBuyers.getNumberOfTicketBuyers}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<h2>Ticket buyerzy urodzenie przed rokiem 2000:</h2>
+<table style="border: 2px solid black;border-spacing: 5px 15px;margin-top: 10px;">
+    <thead>
+    <tr>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> First name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Second name</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Email</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Age range</th>
+        <th style="border-right: 2px solid black;padding: 5px;border-bottom: 2px solid black"> Birth date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${ticketBuyersBeforeYear2000.empty}">
+        <td colspan="2"> No ticket buyers Available</td>
+    </tr>
+    <tr th:each="ticketBuyerBeforeYear2000 : ${ticketBuyersBeforeYear2000}">
+        <td class="align-middle" th:text="${ticketBuyerBeforeYear2000.firstName}"></td>
+        <td class="align-middle" th:text="${ticketBuyerBeforeYear2000.secondName}"></td>
+        <td class="align-middle" th:text="${ticketBuyerBeforeYear2000.email}"></td>
+        <td class="align-middle" th:text="${ticketBuyerBeforeYear2000.ageRange}"></td>
+        <td class="align-middle" th:text="${ticketBuyerBeforeYear2000.dateOfBirth}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

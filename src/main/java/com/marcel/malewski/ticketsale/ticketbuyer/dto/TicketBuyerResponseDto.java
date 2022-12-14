@@ -28,6 +28,16 @@ public class TicketBuyerResponseDto {
               .toList();
    }
 
+   public TicketBuyerResponseDto(Long id, String firstName, String secondName, String password, Date dateOfBirth, String email, String ageRange) {
+      this.id = id;
+      this.firstName = firstName;
+      this.secondName = secondName;
+      this.password = password;
+      this.dateOfBirth = dateOfBirth;
+      this.email = email;
+      this.ageRange = ageRange;
+   }
+
    static public TicketBuyerResponseDto from(TicketBuyer ticketBuyer) {
       //LoyaltyCard moze nie byc
       //Tickets moze nie byc

@@ -4,9 +4,10 @@ import com.marcel.malewski.ticketsale.loyaltycard.LoyaltyCard;
 import com.marcel.malewski.ticketsale.loyaltycard.LoyaltyCardRepository;
 import com.marcel.malewski.ticketsale.ticketbuyer.agerange.AgeRange;
 import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerResponseDto;
-import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerWithMovies;
 import com.marcel.malewski.ticketsale.ticketbuyer.exceptions.TicketBuyerNotFoundException;
 import com.marcel.malewski.ticketsale.ticketbuyer.dto.TicketBuyerWithValidationDto;
+import com.marcel.malewski.ticketsale.ticketbuyer.queryInterface.NumberOfTicketBuyersByAgeRange;
+import com.marcel.malewski.ticketsale.ticketbuyer.queryInterface.TicketBuyerCountMoviesByAgeRange;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -107,12 +108,21 @@ public class TicketBuyerService {
    }
 
    //jpql
-   public TicketBuyer getTicketBuyerMoviesById(Long id, String movieName) {
-      return this.ticketBuyerRepository.findTicketBuyerMovies(id, movieName).orElseThrow();
+   public List<TicketBuyerCountMoviesByAgeRange> getTicketBuyerMoviesByAgeRange() {
+      return this.ticketBuyerRepository.countMoviesByAgeRange();
+   }
+
+  public List<NumberOfTicketBuyersByAgeRange> getNumberOfTicketBuyersByAgeRange() {
+      return this.ticketBuyerRepository.countTicketBuyersByAgeRanges();
    }
 
    public List<TicketBuyerResponseDto> ticketBuyersOrderedByName() {
       List<TicketBuyer> ticketBuyers = this.ticketBuyerRepository.findTicketBuyersWithNameOrder();
+      return TicketBuyerResponseDto.ticketBuyersResponseDtoFrom(ticketBuyers);
+   }
+
+   public List<TicketBuyerResponseDto> ticketByersBeforeYear2000() {
+      List<TicketBuyer> ticketBuyers = this.ticketBuyerRepository.findTicketBuyersBeforeYear2000();
       return TicketBuyerResponseDto.ticketBuyersResponseDtoFrom(ticketBuyers);
    }
 }

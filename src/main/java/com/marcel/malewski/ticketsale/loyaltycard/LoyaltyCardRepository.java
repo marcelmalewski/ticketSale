@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoyaltyCardRepository extends JpaRepository<LoyaltyCard, Long> {
-   @Query("SELECT avg(lc.moneySpent) FROM LoyaltyCard lc")
+   @Query("SELECT round(avg(lc.moneySpent), 2) FROM LoyaltyCard lc")
    Float getAverageSpentMoney();
 }
