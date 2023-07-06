@@ -1,1 +1,1 @@
-# ticketSale
+# Ticket sale - web app
